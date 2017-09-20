@@ -4,8 +4,16 @@ namespace Config\FileReader;
 
 use Config\Exception\ConfigurationFileException;
 
+/**
+ * Reads configuration data from an individual file
+ */
 abstract class FileReader
 {
+    /**
+     * Validates that the string is a readable file
+     *
+     * @param string $file
+     */
     protected function validateFile(string $file)
     {
         if (!is_file($file)) {
