@@ -3,6 +3,7 @@
 namespace Config\Test;
 
 use Config\ConfigurationManager;
+use Config\FileReader\PhpReader;
 
 class ConfigurationManagerTest extends BaseTestCase
 {
@@ -29,5 +30,21 @@ class ConfigurationManagerTest extends BaseTestCase
         $config = new ConfigurationManager([]);
         $config->addConfiguration($this->getSimpleTestData());
         $config->get('nested/asdf');
+    }
+
+    public function testGetFileReader()
+    {
+        $config = new ConfigurationManager([new PhpReader()]);
+        $reader = $config->getFileReader('dir/file.php');
+        $this->assertInstanceOf(PhpReader::class, $reader);
+    }
+
+    /**
+     * @expectedException \Config\Exception\ConfigurationFileException
+     */
+    public function testGetMissingFileReader()
+    {
+        $config = new ConfigurationManager([new PhpReader()]);
+        $reader = $config->getFileReader('dir/file.toml');
     }
 }

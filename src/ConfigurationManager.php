@@ -2,9 +2,9 @@
 
 namespace Config;
 
+use Config\Exception\ConfigurationFileException;
 use Config\Exception\ConfigurationMissingException;
 use Config\FileReader\FileReader;
-use Config\Source\ConfigurationSource;
 use Psr\SimpleCache\CacheInterface;
 
 /**
@@ -30,9 +30,16 @@ class ConfigurationManager
     private $fileReaders;
 
 
+    /**
+     * ConfigurationManager constructor.
+     * @param FileReader[] $fileReaders
+     * @param string $separator
+     */
     public function __construct(array $fileReaders, string $separator = '/')
     {
-        $this->fileReaders = $fileReaders;
+        foreach ($fileReaders as $fileReader) {
+            $this->addFileReader($fileReader);
+        }
         $this->separator = $separator;
     }
 
@@ -88,6 +95,39 @@ class ConfigurationManager
     public function addConfiguration(array $config)
     {
         $this->config = array_merge_recursive($this->config, $config);
+    }
+
+    /**
+     * @param FileReader $fileReader
+     */
+    public function addFileReader(FileReader $fileReader)
+    {
+        foreach ($fileReader->getExtensions() as $extension) {
+            $this->fileReaders[$extension] = $fileReader;
+        }
+    }
+
+    /**
+     * @param string $fileName A file path, the extension is used to determine which file reader is loaded
+     * @return FileReader
+     */
+    public function getFileReader(string $fileName): FileReader
+    {
+        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+        if (isset($this->fileReaders[$extension])) {
+            return $this->fileReaders[$extension];
+        }
+        throw new ConfigurationFileException($fileName, 0, null, ' no file reader available');
+    }
+
+    /**
+     * Adds a cache for enhanced performance
+     *
+     * @param CacheInterface $cache
+     */
+    public function setCache(CacheInterface $cache)
+    {
+        $this->cache = $cache;
     }
 
     /**
