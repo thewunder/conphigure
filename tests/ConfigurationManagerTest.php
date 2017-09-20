@@ -9,7 +9,7 @@ class ConfigurationManagerTest extends BaseTestCase
     public function testHas()
     {
         $config = new ConfigurationManager([]);
-        $config->addConfiguration(['nested'=>['key1'=>'value1']]);
+        $config->addConfiguration($this->getSimpleTestData());
         $this->assertTrue($config->has('nested/key1'));
         $this->assertFalse($config->has('asdf'));
     }
@@ -17,7 +17,7 @@ class ConfigurationManagerTest extends BaseTestCase
     public function testGet()
     {
         $config = new ConfigurationManager([]);
-        $config->addConfiguration(['nested'=>['key1'=>'value1']]);
+        $config->addConfiguration($this->getSimpleTestData());
         $this->assertEquals('value1', $config->get('nested/key1'));
     }
 
@@ -27,7 +27,7 @@ class ConfigurationManagerTest extends BaseTestCase
     public function testMissing()
     {
         $config = new ConfigurationManager([]);
-        $config->addConfiguration(['nested'=>['key1'=>'value1']]);
-        $config->get('nested/key2');
+        $config->addConfiguration($this->getSimpleTestData());
+        $config->get('nested/asdf');
     }
 }

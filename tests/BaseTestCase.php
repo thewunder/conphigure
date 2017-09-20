@@ -10,4 +10,15 @@ class BaseTestCase extends TestCase
     {
         return realpath(__DIR__ . '/config') . '/';
     }
+
+    protected function getSimpleTestData(): array
+    {
+        return [
+            'simple' => 'simple value',
+            'nested' => [
+                'key1'  => 'value1',
+                'key2'  => 'value2'
+            ]
+        ];
+    }
 }
