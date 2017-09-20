@@ -11,6 +11,11 @@ class BaseTestCase extends TestCase
         return realpath(__DIR__ . '/config') . '/';
     }
 
+    protected function getInvalidConfigDir(): string
+    {
+        return realpath(__DIR__ . '/invalid') . '/';
+    }
+
     protected function getSimpleTestData(): array
     {
         return [

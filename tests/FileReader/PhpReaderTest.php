@@ -14,4 +14,13 @@ class PhpReaderTest extends BaseTestCase
 
         $this->assertEquals($config, $reader->read($this->getConfigDir() . 'phpfile.php'));
     }
+
+    /**
+     * @expectedException \Config\Exception\ConfigurationFileException
+     */
+    public function testInvalid()
+    {
+        $reader = new PhpReader();
+        $reader->read($this->getInvalidConfigDir() . 'phpfile.php');
+    }
 }

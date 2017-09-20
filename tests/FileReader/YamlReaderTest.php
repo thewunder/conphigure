@@ -15,4 +15,13 @@ class YamlReaderTest extends BaseTestCase
 
         $this->assertEquals($config, $reader->read($this->getConfigDir() . 'yamlfile.yml'));
     }
+
+    /**
+     * @expectedException \Config\Exception\ConfigurationFileException
+     */
+    public function testInvalid()
+    {
+        $reader = new YamlReader();
+        $reader->read($this->getInvalidConfigDir() . 'yamlfile.yml');
+    }
 }
