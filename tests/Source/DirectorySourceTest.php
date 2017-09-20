@@ -21,6 +21,16 @@ class DirectorySourceTest extends BaseTestCase
         $this->assertEquals($testData, $configuration['yamlfile']);
     }
 
+    public function testLoadNoPrefix()
+    {
+        $config = $this->getMockConfig();
+        $dirSource = new DirectorySource($config, $this->getConfigDir(),false);
+        $configuration = $dirSource->load();
+
+        $testData = $this->getSimpleTestData();
+        $this->assertEquals($testData, $configuration);
+    }
+
     protected function getMockConfig(): ConfigurationManager
     {
         $config = $this->getMockBuilder(ConfigurationManager::class)

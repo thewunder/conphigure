@@ -45,7 +45,7 @@ class DirectorySource implements ConfigurationSource
                 $noExtension = str_replace('.'.$value->getExtension(), '', $fileName);
                 $configuration[$noExtension] = $fileConfig;
             } else {
-                $configuration = array_merge_recursive($configuration, $fileConfig);
+                $configuration = array_merge($configuration, $fileConfig);
             }
         }
 
