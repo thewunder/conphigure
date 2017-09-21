@@ -11,10 +11,10 @@ Conphig is a framework agnostic configuration framework for php 7+.
 
 It can read individual files and directories in the following formats:
 
-- php files
-- yaml files
-- json files
-- ini files
+- php
+- yaml
+- json
+- ini
 
 ## Install
 
@@ -27,7 +27,7 @@ $ composer require thewunder/conphig
 ## Usage
 
 ``` php
-$config = Conphig::create();
+$config = Configuration::create();
 
 //load configuration from a single file or directory
 $config->read('/my/config/dir/');
