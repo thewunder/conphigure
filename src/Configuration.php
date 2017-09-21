@@ -131,7 +131,7 @@ class Configuration
      */
     public function addConfiguration(array $config)
     {
-        $this->config = array_merge_recursive($this->config, $config);
+        $this->config = array_merge($this->config, $config);
     }
 
     /**

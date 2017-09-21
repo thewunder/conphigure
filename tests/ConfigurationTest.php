@@ -34,6 +34,14 @@ class ConfigurationTest extends BaseTestCase
         $config->get('nested/asdf');
     }
 
+    public function testOverwrite()
+    {
+        $config = new Configuration([]);
+        $config->addConfiguration($this->getSimpleTestData());
+        $config->addConfiguration(['nested'=>['key1'=>'new']]);
+        $this->assertEquals('new', $config->get('nested/key1'));
+    }
+
     public function testGetFileReader()
     {
         $config = new Configuration([new PhpReader()]);
