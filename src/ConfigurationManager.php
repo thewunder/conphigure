@@ -5,6 +5,7 @@ namespace Config;
 use Config\Exception\ConfigurationFileException;
 use Config\Exception\ConfigurationMissingException;
 use Config\FileReader\FileReader;
+use Config\FileReader\IniReader;
 use Config\FileReader\JsonReader;
 use Config\FileReader\PhpReader;
 use Config\FileReader\YamlReader;
@@ -65,7 +66,7 @@ class ConfigurationManager
      */
     protected static function allReaders(): array
     {
-        $readers = [new PhpReader(), new JsonReader()];
+        $readers = [new PhpReader(), new JsonReader(), new IniReader()];
         if (class_exists('Symfony\\Component\\Yaml\\Parser')) {
             $readers[] = new YamlReader();
         }

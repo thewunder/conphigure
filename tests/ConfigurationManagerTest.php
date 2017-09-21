@@ -107,6 +107,7 @@ class ConfigurationManagerTest extends BaseTestCase
         $this->assertEquals($this->getSimpleTestData(), $config->get('phpfile'));
         $this->assertEquals($this->getSimpleTestData(), $config->get('yamlfile'));
         $this->assertEquals($this->getSimpleTestData(), $config->get('jsonfile'));
+        $this->assertEquals($this->getSimpleTestData(), $config->get('inifile'));
         $this->assertEquals($this->getSimpleTestData(), $config->get('subdir/phpfile'));
         $this->assertEquals($this->getSimpleTestData(), $config->get('subdir/subsubdir/phpfile'));
     }

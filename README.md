@@ -14,9 +14,7 @@ It can read individual files and directories with several types of file includin
 - php files
 - yaml files
 - json files
-
-In addition it can read configuration from a database table via pdo.
-
+- ini files
 
 ## Install
 
