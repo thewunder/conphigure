@@ -28,7 +28,6 @@ class YamlReader extends FileReader
 
     public function read(string $file): array
     {
-        $this->validateFile($file);
         try {
             return $this->parser->parse(file_get_contents($file));
         } catch (ParseException $e) {

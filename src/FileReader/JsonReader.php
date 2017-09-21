@@ -13,7 +13,6 @@ class JsonReader extends FileReader
 
     public function read(string $file): array
     {
-        $this->validateFile($file);
         try {
             return json_decode(file_get_contents($file), true);
         } catch (\Error $e) {

@@ -106,6 +106,28 @@ class ConfigurationTest extends BaseTestCase
         $this->assertEquals($this->getSimpleTestData(), $config->all());
     }
 
+    /**
+     * @expectedException \Conphig\Exception\ConfigurationFileException
+     */
+    public function testReadMissingFile()
+    {
+        $config = Configuration::create([new PhpReader()]);
+        $config->read($this->getConfigDir() . 'missing.php');
+    }
+
+    /**
+     * @expectedException \Conphig\Exception\ConfigurationFileException
+     */
+    public function testReadBadPermissions()
+    {
+        if (file_exists('/root')) {
+            $config = Configuration::create([new PhpReader()]);
+            $config->read('/root');
+        } else {
+            $this->markTestSkipped('/root does not exist');
+        }
+    }
+
     public function testReadDirectory()
     {
         $config = Configuration::create();

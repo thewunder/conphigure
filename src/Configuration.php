@@ -116,6 +116,7 @@ class Configuration
      */
     public function read(string $path)
     {
+        $this->validatePath($path);
         $reader = $this->getFileReader($path);
         $this->addConfiguration($reader->read($path));
     }
@@ -156,5 +157,21 @@ class Configuration
             return $this->fileReaders[$key];
         }
         throw new ConfigurationFileException($path, 0, null, " no file reader for {$key} available");
+    }
+
+    /**
+     * Validates that the path exists and is readable
+     *
+     * @param string $file
+     */
+    protected function validatePath(string $file)
+    {
+        if (!file_exists($file)) {
+            throw new ConfigurationFileException($file, 0, null, ' does not exist');
+        }
+
+        if (!is_readable($file)) {
+            throw new ConfigurationFileException($file, 0, null, ' is not readable');
+        }
     }
 }

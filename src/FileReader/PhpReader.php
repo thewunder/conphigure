@@ -8,7 +8,6 @@ class PhpReader extends FileReader
 {
     public function read(string $file): array
     {
-        $this->validateFile($file);
         $value = include($file);
         if (is_array($value)) {
             return $value;
