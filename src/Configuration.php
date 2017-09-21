@@ -161,12 +161,4 @@ class Configuration
         }
         throw new ConfigurationFileException($path, 0, null, " no file reader for {$key} available");
     }
-
-    /**
-     * @return string
-     */
-    public function getSeparator(): string
-    {
-        return $this->separator;
-    }
 }
