@@ -17,11 +17,11 @@ abstract class FileReader
     protected function validateFile(string $file)
     {
         if (!is_file($file)) {
-            throw new ConfigurationFileException($file, 0 , null, ' file does not exist');
+            throw new ConfigurationFileException($file, 0, null, ' file does not exist');
         }
 
         if (!is_readable($file)) {
-            throw new ConfigurationFileException($file, 0 , null, ' is not readable');
+            throw new ConfigurationFileException($file, 0, null, ' is not readable');
         }
     }
 
@@ -30,7 +30,7 @@ abstract class FileReader
      *
      * @return array
      */
-    abstract function getExtensions(): array;
+    abstract public function getExtensions(): array;
 
     /**
      * Reads the file and returns the data contained there in
@@ -38,5 +38,5 @@ abstract class FileReader
      * @param string $file Full path to file
      * @return array
      */
-    abstract function read(string $file): array;
+    abstract public function read(string $file): array;
 }

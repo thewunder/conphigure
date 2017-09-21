@@ -28,7 +28,7 @@ class DirectoryReaderTest extends BaseTestCase
     public function testLoadNoPrefix()
     {
         $config = $this->getMockConfig();
-        $dirSource = new DirectoryReader($config,false);
+        $dirSource = new DirectoryReader($config, false);
         $configuration = $dirSource->read($this->getConfigDir());
 
         $testData = $this->getSimpleTestData();

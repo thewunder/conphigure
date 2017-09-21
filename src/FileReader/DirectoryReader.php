@@ -2,7 +2,6 @@
 
 namespace Config\FileReader;
 
-
 use Config\Configuration;
 use Config\Exception\ConfigurationFileException;
 
@@ -42,8 +41,8 @@ class DirectoryReader extends FileReader
         foreach ($directory as $file) {
             if ($file->isFile()) {
                 $this->readFile($file, $configuration);
-            } else if($directory->hasChildren()) {
-                if($this->prefixWithFile) {
+            } elseif ($directory->hasChildren()) {
+                if ($this->prefixWithFile) {
                     $configuration[$directory->getFilename()] = [];
                     $this->traverseDirectory($directory->getChildren(), $configuration[$directory->getFilename()]);
                 } else {
@@ -67,7 +66,7 @@ class DirectoryReader extends FileReader
         }
     }
 
-    function getExtensions(): array
+    public function getExtensions(): array
     {
         return ['/'];
     }

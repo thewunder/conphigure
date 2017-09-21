@@ -21,12 +21,12 @@ class YamlReader extends FileReader
         $this->parser = new Parser();
     }
 
-    function getExtensions(): array
+    public function getExtensions(): array
     {
         return ['yml', 'yaml'];
     }
 
-    function read(string $file): array
+    public function read(string $file): array
     {
         $this->validateFile($file);
         try {

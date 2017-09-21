@@ -6,7 +6,7 @@ use Config\Exception\ConfigurationFileException;
 
 class IniReader extends FileReader
 {
-    function read(string $file): array
+    public function read(string $file): array
     {
         $this->validateFile($file);
 
@@ -17,7 +17,7 @@ class IniReader extends FileReader
         }
     }
 
-    function getExtensions(): array
+    public function getExtensions(): array
     {
         return ['ini'];
     }

@@ -6,12 +6,12 @@ use Config\Exception\ConfigurationFileException;
 
 class JsonReader extends FileReader
 {
-    function getExtensions(): array
+    public function getExtensions(): array
     {
         return ['json'];
     }
 
-    function read(string $file): array
+    public function read(string $file): array
     {
         $this->validateFile($file);
         try {
