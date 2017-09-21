@@ -104,11 +104,19 @@ class ConfigurationTest extends BaseTestCase
     {
         $config = Configuration::create();
         $config->read($this->getConfigDir());
-        $this->assertEquals($this->getSimpleTestData(), $config->get('phpfile'));
-        $this->assertEquals($this->getSimpleTestData(), $config->get('yamlfile'));
-        $this->assertEquals($this->getSimpleTestData(), $config->get('jsonfile'));
-        $this->assertEquals($this->getSimpleTestData(), $config->get('inifile'));
-        $this->assertEquals($this->getSimpleTestData(), $config->get('subdir/phpfile'));
-        $this->assertEquals($this->getSimpleTestData(), $config->get('subdir/subsubdir/phpfile'));
+        $testData = $this->getSimpleTestData();
+        $this->assertEquals($testData, $config->get('phpfile'));
+        $this->assertEquals($testData, $config->get('yamlfile'));
+        $this->assertEquals($testData, $config->get('jsonfile'));
+        $this->assertEquals($testData, $config->get('inifile'));
+        $this->assertEquals($testData, $config->get('subdir/phpfile'));
+        $this->assertEquals($testData, $config->get('subdir/subsubdir/phpfile'));
+    }
+
+    public function testReadDirectoryNoPrefix()
+    {
+        $config = Configuration::create([], '/', false);
+        $config->read($this->getConfigDir());
+        $this->assertEquals($this->getSimpleTestData(), $config->all());
     }
 }
