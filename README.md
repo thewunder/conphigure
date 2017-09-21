@@ -3,7 +3,7 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+[![Coverage Status][ico-coverage]][link-coverage]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
@@ -68,13 +68,13 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-version]: https://img.shields.io/packagist/v/thewunder/conphig.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/thewunder/conphig/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/thewunder/conphig.svg?style=flat-square
+[ico-coverage]: https://coveralls.io/repos/github/thewunder/conphig/badge.svg?branch=master
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/thewunder/conphig.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/thewunder/conphig.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/thewunder/conphig
 [link-travis]: https://travis-ci.org/thewunder/conphig
-[link-scrutinizer]: https://scrutinizer-ci.com/g/thewunder/conphig/code-structure
+[link-coverage]: https://coveralls.io/github/thewunder/conphig?branch=master
 [link-code-quality]: https://scrutinizer-ci.com/g/thewunder/conphig
 [link-downloads]: https://packagist.org/packages/thewunder/conphig
 [link-author]: https://github.com/thewunder
