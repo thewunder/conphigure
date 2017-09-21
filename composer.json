@@ -5,7 +5,10 @@
     "keywords": [
         "settings",
         "config",
-        "configuration"
+        "configuration",
+        "json",
+        "yaml",
+        "ini"
     ],
     "homepage": "https://github.com/thewunder/config",
     "license": "MIT",
