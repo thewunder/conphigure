@@ -108,6 +108,7 @@ class ConfigurationTest extends BaseTestCase
 
     /**
      * @expectedException \Conphig\Exception\ConfigurationFileException
+     * @expectedExceptionMessageRegExp  /^Error reading configuration file .+ does not exist$/
      */
     public function testReadMissingFile()
     {
@@ -117,8 +118,9 @@ class ConfigurationTest extends BaseTestCase
 
     /**
      * @expectedException \Conphig\Exception\ConfigurationFileException
+     * @expectedExceptionMessageRegExp  /^Error reading configuration file .+ is not readable$/
      */
-    public function testReadBadPermissions()
+    public function testReadUnreadable()
     {
         if (file_exists('/root')) {
             $config = Configuration::create([new PhpReader()]);
