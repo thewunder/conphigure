@@ -13,7 +13,7 @@ use Conphig\FileReader\YamlReader;
 use Conphig\FileReader\DirectoryReader;
 
 /**
- * Main entry point to the Config library
+ * Main entry point to the Conphig library
  */
 class Configuration implements \ArrayAccess
 {
@@ -36,7 +36,7 @@ class Configuration implements \ArrayAccess
     /**
      * Configuration constructor.
      * @param FileReader[] $fileReaders
-     * @param string $separator
+     * @param string $separator Character to separate complex configuration keys
      */
     public function __construct(array $fileReaders, string $separator = self::DEFAULT_SEPARATOR)
     {
@@ -72,7 +72,7 @@ class Configuration implements \ArrayAccess
     /**
      * Retrieves a value from config, a ConfigurationMissingException is thrown if the value is not found and no default is provided
      *
-     * @param string $key
+     * @param string $key Key delimited by the separator (ex. system/db/host)
      * @param mixed $default If a non-null value is passed the default will be returned instead of an exception being thrown
      * @return mixed
      */
@@ -101,7 +101,7 @@ class Configuration implements \ArrayAccess
     }
 
     /**
-     * @param string $key
+     * @param string $key Key delimited by the separator (ex. system/db/host)
      * @return bool True if key exists
      */
     public function has(string $key): bool
@@ -122,8 +122,8 @@ class Configuration implements \ArrayAccess
     /**
      * Sets a configuration value
      *
-     * @param string $key
-     * @param $value
+     * @param string $key Key delimited by the separator (ex. system/db/host)
+     * @param mixed $value
      */
     public function set(string $key, $value)
     {
@@ -146,6 +146,11 @@ class Configuration implements \ArrayAccess
         }
     }
 
+    /**
+     * Removes a configuration value
+     *
+     * @param string $key Key delimited by the separator (ex. system/db/host)
+     */
     public function remove(string $key)
     {
         $keyParts = explode($this->separator, $key);
