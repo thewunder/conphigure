@@ -10,7 +10,6 @@ use Conphig\FileReader\JsonReader;
 use Conphig\FileReader\PhpReader;
 use Conphig\FileReader\YamlReader;
 use Conphig\FileReader\DirectoryReader;
-use Psr\SimpleCache\CacheInterface;
 
 /**
  * Main entry point to the Config library
@@ -174,16 +173,6 @@ class Configuration
             return $this->fileReaders[$key];
         }
         throw new ConfigurationFileException($path, 0, null, " no file reader for {$key} available");
-    }
-
-    /**
-     * Adds a cache for enhanced performance
-     *
-     * @param CacheInterface $cache
-     */
-    public function setCache(CacheInterface $cache)
-    {
-        $this->cache = $cache;
     }
 
     /**
