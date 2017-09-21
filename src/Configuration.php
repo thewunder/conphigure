@@ -107,7 +107,7 @@ class Configuration implements \ArrayAccess
     {
         $keyParts = explode($this->separator, $key);
         $config = $this->config;
-        foreach ($keyParts as $i => $keyPart) {
+        foreach ($keyParts as $keyPart) {
             if (!isset($config[$keyPart])) {
                 return false;
             }
