@@ -7,7 +7,7 @@ use Throwable;
 /**
  * Thrown when a particular configuration value was not found
  */
-class ConfigurationMissingException extends \RuntimeException
+class ConfigurationMissingException extends ConfigException
 {
     public function __construct($key = '', $code = 0, Throwable $previous = null)
     {
