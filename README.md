@@ -57,10 +57,6 @@ $ composer test
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Security
-
-If you discover any security related issues, please email wundbread@gmail.com instead of using the issue tracker.
-
 ## Credits
 
 - [Michael O'Connell][link-author]
