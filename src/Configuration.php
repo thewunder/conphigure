@@ -73,12 +73,13 @@ class Configuration
     }
 
     /**
-     * Retrieves a value from config, a ConfigurationMissingException is thrown if the value is not found
+     * Retrieves a value from config, a ConfigurationMissingException is thrown if the value is not found and no default is provided
      *
      * @param string $key
+     * @param mixed $default If a non-null value is passed the default will be returned instead of an exception being thrown
      * @return mixed
      */
-    public function get(string $key)
+    public function get(string $key, $default = null)
     {
         $keyParts = explode($this->separator, $key);
         $lastIndex = count($keyParts) - 1;
@@ -94,26 +95,12 @@ class Configuration
                 return $config;
             }
         }
-        throw new ConfigurationMissingException($key);
-    }
 
-    /**
-     * @param string $key
-     * @return bool
-     */
-    public function has(string $key): bool
-    {
-        $keyParts = explode($this->separator, $key);
-        $config = $this->config;
-        foreach ($keyParts as $i => $keyPart) {
-            if (!isset($config[$keyPart])) {
-                return false;
-            }
-
-            $config = $config[$keyPart];
+        if($default !== null) {
+            return $default;
+        } else {
+            throw new ConfigurationMissingException($key);
         }
-
-        return true;
     }
 
     /**

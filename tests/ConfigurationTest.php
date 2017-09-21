@@ -11,19 +11,17 @@ use Conphig\FileReader\YamlReader;
 
 class ConfigurationTest extends BaseTestCase
 {
-    public function testHas()
-    {
-        $config = new Configuration([]);
-        $config->addConfiguration($this->getSimpleTestData());
-        $this->assertTrue($config->has('nested/key1'));
-        $this->assertFalse($config->has('asdf'));
-    }
-
     public function testGet()
     {
         $config = new Configuration([]);
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertEquals('value1', $config->get('nested/key1'));
+    }
+
+    public function testGetWithDefault()
+    {
+        $config = new Configuration([]);
+        $this->assertEquals(false, $config->get('nested/key1', false));
     }
 
     /**
