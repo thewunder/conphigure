@@ -24,6 +24,14 @@ class ConfigurationTest extends BaseTestCase
         $this->assertEquals(false, $config->get('nested/key1', false));
     }
 
+    public function testHas()
+    {
+        $config = new Configuration([]);
+        $config->addConfiguration($this->getSimpleTestData());
+        $this->assertTrue($config->has('nested/key1'));
+        $this->assertFalse($config->has('nested/missing'));
+    }
+
     /**
      * @expectedException \Conphig\Exception\ConfigurationMissingException
      */
@@ -148,5 +156,22 @@ class ConfigurationTest extends BaseTestCase
         $config = Configuration::create([], '/', false);
         $config->read($this->getConfigDir());
         $this->assertEquals($this->getSimpleTestData(), $config->all());
+    }
+
+    public function testArrayAccessGet()
+    {
+        $config = Configuration::create([new PhpReader()]);
+
+        $config->addConfiguration($this->getSimpleTestData());
+        $this->assertEquals('value1', $config['nested/key1']);
+    }
+
+    public function testArrayAccessIsset()
+    {
+        $config = Configuration::create([new PhpReader()]);
+
+        $config->addConfiguration($this->getSimpleTestData());
+        $this->assertTrue(isset($config['nested/key1']));
+        $this->assertFalse(isset($config['nested/missing']));
     }
 }

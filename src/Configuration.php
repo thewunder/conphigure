@@ -14,7 +14,7 @@ use Conphig\FileReader\DirectoryReader;
 /**
  * Main entry point to the Config library
  */
-class Configuration
+class Configuration implements \ArrayAccess
 {
     const DEFAULT_SEPARATOR = '/';
 
@@ -92,11 +92,30 @@ class Configuration
             }
         }
 
-        if($default !== null) {
+        if ($default !== null) {
             return $default;
         } else {
             throw new ConfigurationMissingException($key);
         }
+    }
+
+    /**
+     * @param string $key
+     * @return bool True if key exists
+     */
+    public function has(string $key): bool
+    {
+        $keyParts = explode($this->separator, $key);
+        $config = $this->config;
+        foreach ($keyParts as $i => $keyPart) {
+            if (!isset($config[$keyPart])) {
+                return false;
+            }
+
+            $config = $config[$keyPart];
+        }
+
+        return true;
     }
 
     /**
@@ -173,5 +192,25 @@ class Configuration
         if (!is_readable($file)) {
             throw new ConfigurationFileException($file, 0, null, ' is not readable');
         }
+    }
+
+    public function offsetExists($offset)
+    {
+        return $this->has($offset);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->get($offset);
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        $this->config[$offset] = $value;
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->config[$offset]);
     }
 }
