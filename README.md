@@ -7,9 +7,9 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Conphig is a multi-source framework agnostic configuration framework. 
+Conphig is a framework agnostic configuration framework for php 7+. 
 
-It can read individual files and directories with several types of file including:
+It can read individual files and directories in the following formats:
 
 - php files
 - yaml files
@@ -27,8 +27,20 @@ $ composer require thewunder/conphig
 ## Usage
 
 ``` php
-$c = new Config();
-echo $skeleton->echoPhrase('Hello, League!');
+$config = Conphig::create();
+
+//load configuration from a single file or directory
+$config->read('/my/config/dir/');
+
+//add configuration from somewhere else (cache / database / etc)
+$config->addConfiguration($myArray)
+
+//get a value
+$host = $config->get('database/host');
+
+//throws an exception if a value is missing
+$value = $config->get('missing/key');
+
 ```
 
 ## Change log
@@ -52,7 +64,6 @@ If you discover any security related issues, please email wundbread@gmail.com in
 ## Credits
 
 - [Michael O'Connell][link-author]
-- [All Contributors][link-contributors]
 
 ## License
 
