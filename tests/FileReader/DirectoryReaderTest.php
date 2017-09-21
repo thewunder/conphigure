@@ -2,7 +2,7 @@
 
 namespace Config\Test\FileReader;
 
-use Config\ConfigurationManager;
+use Config\Configuration;
 use Config\FileReader\PhpReader;
 use Config\FileReader\DirectoryReader;
 use Config\Test\BaseTestCase;
@@ -35,9 +35,9 @@ class DirectoryReaderTest extends BaseTestCase
         $this->assertEquals($testData, $configuration);
     }
 
-    protected function getMockConfig(): ConfigurationManager
+    protected function getMockConfig(): Configuration
     {
-        $config = $this->getMockBuilder(ConfigurationManager::class)
+        $config = $this->getMockBuilder(Configuration::class)
             ->disableOriginalConstructor()
             ->setMethods(['getFileReader'])
             ->getMock();

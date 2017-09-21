@@ -15,7 +15,7 @@ use Psr\SimpleCache\CacheInterface;
 /**
  * Main entry point to the Config library
  */
-class ConfigurationManager
+class Configuration
 {
     const DEFAULT_SEPARATOR = '/';
 
@@ -38,7 +38,7 @@ class ConfigurationManager
 
 
     /**
-     * ConfigurationManager constructor.
+     * Configuration constructor.
      * @param FileReader[] $fileReaders
      * @param string $separator
      */

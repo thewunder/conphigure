@@ -2,18 +2,18 @@
 
 namespace Config\Test;
 
-use Config\ConfigurationManager;
+use Config\Configuration;
 use Config\Exception\ConfigurationFileException;
 use Config\FileReader\DirectoryReader;
 use Config\FileReader\JsonReader;
 use Config\FileReader\PhpReader;
 use Config\FileReader\YamlReader;
 
-class ConfigurationManagerTest extends BaseTestCase
+class ConfigurationTest extends BaseTestCase
 {
     public function testHas()
     {
-        $config = new ConfigurationManager([]);
+        $config = new Configuration([]);
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertTrue($config->has('nested/key1'));
         $this->assertFalse($config->has('asdf'));
@@ -21,7 +21,7 @@ class ConfigurationManagerTest extends BaseTestCase
 
     public function testGet()
     {
-        $config = new ConfigurationManager([]);
+        $config = new Configuration([]);
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertEquals('value1', $config->get('nested/key1'));
     }
@@ -31,21 +31,21 @@ class ConfigurationManagerTest extends BaseTestCase
      */
     public function testMissing()
     {
-        $config = new ConfigurationManager([]);
+        $config = new Configuration([]);
         $config->addConfiguration($this->getSimpleTestData());
         $config->get('nested/asdf');
     }
 
     public function testGetFileReader()
     {
-        $config = new ConfigurationManager([new PhpReader()]);
+        $config = new Configuration([new PhpReader()]);
         $reader = $config->getFileReader('dir/file.php');
         $this->assertInstanceOf(PhpReader::class, $reader);
     }
 
     public function testGetDirectoryReader()
     {
-        $config = new ConfigurationManager([new PhpReader()]);
+        $config = new Configuration([new PhpReader()]);
         $config->addFileReader(new DirectoryReader($config));
         $reader = $config->getFileReader($this->getConfigDir());
         $this->assertInstanceOf(DirectoryReader::class, $reader);
@@ -56,14 +56,14 @@ class ConfigurationManagerTest extends BaseTestCase
      */
     public function testGetMissingFileReader()
     {
-        $config = new ConfigurationManager([new PhpReader()]);
+        $config = new Configuration([new PhpReader()]);
         $config->getFileReader('dir/file.toml');
     }
 
     public function testCreate()
     {
-        $config = ConfigurationManager::create();
-        $this->assertInstanceOf(ConfigurationManager::class, $config);
+        $config = Configuration::create();
+        $this->assertInstanceOf(Configuration::class, $config);
 
         //test that all readers have been added
         $reader = $config->getFileReader('dir/file.php');
@@ -78,8 +78,8 @@ class ConfigurationManagerTest extends BaseTestCase
 
     public function testCreateWithReaders()
     {
-        $config = ConfigurationManager::create([new PhpReader()]);
-        $this->assertInstanceOf(ConfigurationManager::class, $config);
+        $config = Configuration::create([new PhpReader()]);
+        $this->assertInstanceOf(Configuration::class, $config);
 
         //test that all readers have been added
         $reader = $config->getFileReader('dir/file.php');
@@ -95,14 +95,14 @@ class ConfigurationManagerTest extends BaseTestCase
 
     public function testReadFile()
     {
-        $config = ConfigurationManager::create([new PhpReader()]);
+        $config = Configuration::create([new PhpReader()]);
         $config->read($this->getConfigDir() . 'phpfile.php');
         $this->assertEquals($this->getSimpleTestData(), $config->all());
     }
 
     public function testReadDirectory()
     {
-        $config = ConfigurationManager::create();
+        $config = Configuration::create();
         $config->read($this->getConfigDir());
         $this->assertEquals($this->getSimpleTestData(), $config->get('phpfile'));
         $this->assertEquals($this->getSimpleTestData(), $config->get('yamlfile'));

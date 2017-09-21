@@ -3,13 +3,13 @@
 namespace Config\FileReader;
 
 
-use Config\ConfigurationManager;
+use Config\Configuration;
 use Config\Exception\ConfigurationFileException;
 
 class DirectoryReader extends FileReader
 {
     /**
-     * @var ConfigurationManager
+     * @var Configuration
      */
     private $config;
     /**
@@ -17,7 +17,7 @@ class DirectoryReader extends FileReader
      */
     private $prefixWithFile;
 
-    public function __construct(ConfigurationManager $config, bool $prefixWithFile = true)
+    public function __construct(Configuration $config, bool $prefixWithFile = true)
     {
         $this->config = $config;
         $this->prefixWithFile = $prefixWithFile;
