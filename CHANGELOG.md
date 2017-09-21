@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.2
+
+### Fixes
+
+- Allow leading and trailing separators
+
 ## 0.9.1
 
 ### New Features
