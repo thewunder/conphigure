@@ -38,6 +38,10 @@ $config->addConfiguration($myArray)
 //get a value
 $host = $config->get('database/host');
 
+//can also use like an array
+$host = $config['database']['host'];
+$host = $config['database/host'];
+
 //throws an exception if a value is missing
 $value = $config->get('missing/key');
 
