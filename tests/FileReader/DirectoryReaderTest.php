@@ -1,19 +1,19 @@
 <?php
 
-namespace Config\Test\Source;
+namespace Config\Test\FileReader;
 
 use Config\ConfigurationManager;
 use Config\FileReader\PhpReader;
-use Config\Source\DirectorySource;
+use Config\FileReader\DirectoryReader;
 use Config\Test\BaseTestCase;
 
-class DirectorySourceTest extends BaseTestCase
+class DirectoryReaderTest extends BaseTestCase
 {
     public function testLoad()
     {
         $config = $this->getMockConfig();
-        $dirSource = new DirectorySource($config, $this->getConfigDir());
-        $configuration = $dirSource->load();
+        $dirSource = new DirectoryReader($config);
+        $configuration = $dirSource->read($this->getConfigDir());
 
         $testData = $this->getSimpleTestData();
         $this->assertEquals($testData, $configuration['jsonfile']);
@@ -28,8 +28,8 @@ class DirectorySourceTest extends BaseTestCase
     public function testLoadNoPrefix()
     {
         $config = $this->getMockConfig();
-        $dirSource = new DirectorySource($config, $this->getConfigDir(),false);
-        $configuration = $dirSource->load();
+        $dirSource = new DirectoryReader($config,false);
+        $configuration = $dirSource->read($this->getConfigDir());
 
         $testData = $this->getSimpleTestData();
         $this->assertEquals($testData, $configuration);

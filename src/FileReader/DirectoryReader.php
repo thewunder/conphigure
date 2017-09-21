@@ -1,40 +1,35 @@
 <?php
 
-namespace Config\Source;
+namespace Config\FileReader;
 
 
 use Config\ConfigurationManager;
 use Config\Exception\ConfigurationFileException;
 
-class DirectorySource implements ConfigurationSource
+class DirectoryReader extends FileReader
 {
     /**
      * @var ConfigurationManager
      */
     private $config;
     /**
-     * @var string
-     */
-    private $path;
-    /**
      * @var bool
      */
     private $prefixWithFile;
 
-    public function __construct(ConfigurationManager $config, string $path, bool $prefixWithFile = true)
+    public function __construct(ConfigurationManager $config, bool $prefixWithFile = true)
+    {
+        $this->config = $config;
+        $this->prefixWithFile = $prefixWithFile;
+    }
+
+    public function read(string $path): array
     {
         if (!is_dir($path)) {
             throw new ConfigurationFileException($path, 0, null, ' must be a directory');
         }
 
-        $this->config = $config;
-        $this->path = $path;
-        $this->prefixWithFile = $prefixWithFile;
-    }
-
-    public function load(): array
-    {
-        $directory = new \RecursiveDirectoryIterator($this->path, \FilesystemIterator::SKIP_DOTS);
+        $directory = new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS);
         $configuration = [];
         $this->traverseDirectory($directory, $configuration);
 
@@ -70,5 +65,10 @@ class DirectorySource implements ConfigurationSource
         } else {
             $configuration = array_merge($configuration, $fileConfig);
         }
+    }
+
+    function getExtensions(): array
+    {
+        return ['/'];
     }
 }
