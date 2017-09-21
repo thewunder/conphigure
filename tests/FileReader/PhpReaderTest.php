@@ -1,8 +1,8 @@
 <?php
-namespace Config\Test\FileReader;
+namespace Conphig\Test\FileReader;
 
-use Config\FileReader\PhpReader;
-use Config\Test\BaseTestCase;
+use Conphig\FileReader\PhpReader;
+use Conphig\Test\BaseTestCase;
 
 class PhpReaderTest extends BaseTestCase
 {
@@ -16,7 +16,7 @@ class PhpReaderTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Config\Exception\ConfigurationFileException
+     * @expectedException \Conphig\Exception\ConfigurationFileException
      */
     public function testInvalid()
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Config\Test\FileReader;
+namespace Conphig\Test\FileReader;
 
-use Config\FileReader\YamlReader;
-use Config\Test\BaseTestCase;
+use Conphig\FileReader\YamlReader;
+use Conphig\Test\BaseTestCase;
 
 class YamlReaderTest extends BaseTestCase
 {
@@ -17,7 +17,7 @@ class YamlReaderTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Config\Exception\ConfigurationFileException
+     * @expectedException \Conphig\Exception\ConfigurationFileException
      */
     public function testInvalid()
     {

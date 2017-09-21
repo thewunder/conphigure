@@ -1,11 +1,11 @@
 <?php
 
-namespace Config\Test\FileReader;
+namespace Conphig\Test\FileReader;
 
-use Config\Configuration;
-use Config\FileReader\PhpReader;
-use Config\FileReader\DirectoryReader;
-use Config\Test\BaseTestCase;
+use Conphig\Configuration;
+use Conphig\FileReader\PhpReader;
+use Conphig\FileReader\DirectoryReader;
+use Conphig\Test\BaseTestCase;
 
 class DirectoryReaderTest extends BaseTestCase
 {

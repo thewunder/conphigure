@@ -1,15 +1,15 @@
 <?php
 
-namespace Config;
+namespace Conphig;
 
-use Config\Exception\ConfigurationFileException;
-use Config\Exception\ConfigurationMissingException;
-use Config\FileReader\FileReader;
-use Config\FileReader\IniReader;
-use Config\FileReader\JsonReader;
-use Config\FileReader\PhpReader;
-use Config\FileReader\YamlReader;
-use Config\FileReader\DirectoryReader;
+use Conphig\Exception\ConfigurationFileException;
+use Conphig\Exception\ConfigurationMissingException;
+use Conphig\FileReader\FileReader;
+use Conphig\FileReader\IniReader;
+use Conphig\FileReader\JsonReader;
+use Conphig\FileReader\PhpReader;
+use Conphig\FileReader\YamlReader;
+use Conphig\FileReader\DirectoryReader;
 use Psr\SimpleCache\CacheInterface;
 
 /**

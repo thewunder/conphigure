@@ -1,6 +1,6 @@
 <?php
 
-namespace Config\Exception;
+namespace Conphig\Exception;
 
 class ConfigException extends \RuntimeException
 {

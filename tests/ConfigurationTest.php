@@ -1,13 +1,13 @@
 <?php
 
-namespace Config\Test;
+namespace Conphig\Test;
 
-use Config\Configuration;
-use Config\Exception\ConfigurationFileException;
-use Config\FileReader\DirectoryReader;
-use Config\FileReader\JsonReader;
-use Config\FileReader\PhpReader;
-use Config\FileReader\YamlReader;
+use Conphig\Configuration;
+use Conphig\Exception\ConfigurationFileException;
+use Conphig\FileReader\DirectoryReader;
+use Conphig\FileReader\JsonReader;
+use Conphig\FileReader\PhpReader;
+use Conphig\FileReader\YamlReader;
 
 class ConfigurationTest extends BaseTestCase
 {
@@ -27,7 +27,7 @@ class ConfigurationTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Config\Exception\ConfigurationMissingException
+     * @expectedException \Conphig\Exception\ConfigurationMissingException
      */
     public function testMissing()
     {
@@ -52,7 +52,7 @@ class ConfigurationTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Config\Exception\ConfigurationFileException
+     * @expectedException \Conphig\Exception\ConfigurationFileException
      */
     public function testGetMissingFileReader()
     {

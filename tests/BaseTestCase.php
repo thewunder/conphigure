@@ -1,6 +1,6 @@
 <?php
 
-namespace Config\Test;
+namespace Conphig\Test;
 
 use PHPUnit\Framework\TestCase;
 
