@@ -19,6 +19,10 @@ class DirectorySourceTest extends BaseTestCase
         $this->assertEquals($testData, $configuration['jsonfile']);
         $this->assertEquals($testData, $configuration['phpfile']);
         $this->assertEquals($testData, $configuration['yamlfile']);
+        $this->assertArrayHasKey('subdir', $configuration);
+        $this->assertEquals($testData, $configuration['subdir']['phpfile']);
+        $this->assertArrayHasKey('subsubdir', $configuration['subdir']);
+        $this->assertEquals($testData, $configuration['subdir']['subsubdir']['phpfile']);
     }
 
     public function testLoadNoPrefix()

@@ -34,21 +34,41 @@ class DirectorySource implements ConfigurationSource
 
     public function load(): array
     {
-        $iterator = new \RecursiveDirectoryIterator($this->path, \FilesystemIterator::SKIP_DOTS);
+        $directory = new \RecursiveDirectoryIterator($this->path, \FilesystemIterator::SKIP_DOTS);
         $configuration = [];
-        /** @var \SplFileInfo $value */
-        foreach ($iterator as $value) {
-            $fileName = $value->getBasename();
-            $reader = $this->config->getFileReader($fileName);
-            $fileConfig = $reader->read($value);
-            if ($this->prefixWithFile) {
-                $noExtension = str_replace('.'.$value->getExtension(), '', $fileName);
-                $configuration[$noExtension] = $fileConfig;
-            } else {
-                $configuration = array_merge($configuration, $fileConfig);
-            }
-        }
+        $this->traverseDirectory($directory, $configuration);
 
         return $configuration;
+    }
+
+    protected function traverseDirectory(\RecursiveDirectoryIterator $directory, array &$configuration)
+    {
+        /** @var \SplFileInfo $file */
+        foreach ($directory as $file) {
+            if ($file->isFile()) {
+                $this->readFile($file, $configuration);
+            } else if($directory->hasChildren()) {
+                if($this->prefixWithFile) {
+                    $configuration[$directory->getFilename()] = [];
+                    $this->traverseDirectory($directory->getChildren(), $configuration[$directory->getFilename()]);
+                } else {
+                    $this->traverseDirectory($directory->getChildren(), $configuration);
+                }
+            }
+        }
+    }
+
+    protected function readFile(\SplFileInfo $file, array &$configuration)
+    {
+        $fileName = $file->getBasename();
+
+        $reader = $this->config->getFileReader($fileName);
+        $fileConfig = $reader->read($file);
+        if ($this->prefixWithFile) {
+            $noExtension = str_replace('.' . $file->getExtension(), '', $fileName);
+            $configuration[$noExtension] = $fileConfig;
+        } else {
+            $configuration = array_merge($configuration, $fileConfig);
+        }
     }
 }
