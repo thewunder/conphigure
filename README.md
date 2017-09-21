@@ -7,7 +7,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Conphig is a framework agnostic configuration framework for php 7+. 
+Conphig is a framework agnostic configuration framework for php 7+.
 
 It can read individual files and directories in the following formats:
 
@@ -40,6 +40,29 @@ $host = $config->get('database/host');
 
 //throws an exception if a value is missing
 $value = $config->get('missing/key');
+
+```
+
+Given a directory with:
+
+- system.yml
+- email.yml
+- logging.yml
+- subdirectory/something.yml
+
+By default Conphig will prefix the values in each file with the file name.
+
+``` php
+//this will be the result
+$config = [
+    'system' => ['...'], //contents of system.yml
+    'email' => ['...'], //contents of email.yml
+    'logging' => ['...'], //contents of logging.yml
+    'subdirectory' => [
+        'something' => ['...'], //contents of subdirectory/something.yml
+    ]
+];
+
 
 ```
 
