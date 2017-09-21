@@ -27,10 +27,6 @@ class Configuration
      */
     private $separator;
     /**
-     * @var CacheInterface
-     */
-    private $cache;
-    /**
      * @var array
      */
     private $fileReaders;
