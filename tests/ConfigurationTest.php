@@ -24,14 +24,6 @@ class ConfigurationTest extends BaseTestCase
         $this->assertEquals(false, $config->get('nested/key1', false));
     }
 
-    public function testHas()
-    {
-        $config = new Configuration([]);
-        $config->addConfiguration($this->getSimpleTestData());
-        $this->assertTrue($config->has('nested/key1'));
-        $this->assertFalse($config->has('nested/missing'));
-    }
-
     /**
      * @expectedException \Conphig\Exception\ConfigurationMissingException
      */
@@ -40,6 +32,32 @@ class ConfigurationTest extends BaseTestCase
         $config = new Configuration([]);
         $config->addConfiguration($this->getSimpleTestData());
         $config->get('nested/asdf');
+    }
+
+    public function testHas()
+    {
+        $config = new Configuration([]);
+        $config->addConfiguration($this->getSimpleTestData());
+        $this->assertTrue($config->has('nested/key1'));
+        $this->assertFalse($config->has('nested/missing'));
+    }
+
+    public function testSet()
+    {
+        $config = new Configuration([]);
+        $config->addConfiguration($this->getSimpleTestData());
+        $config->set('nested/key1', 'new');
+        $config->set('newnested/newkey', 'new');
+        $this->assertEquals('new', $config->get('nested/key1'));
+        $this->assertEquals('new', $config->get('newnested/newkey'));
+    }
+
+    public function testRemove()
+    {
+        $config = new Configuration([]);
+        $config->addConfiguration($this->getSimpleTestData());
+        $config->remove('nested/key1');
+        $this->assertFalse($config->has('nested/key1'));
     }
 
     public function testOverwrite()
@@ -173,5 +191,21 @@ class ConfigurationTest extends BaseTestCase
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertTrue(isset($config['nested/key1']));
         $this->assertFalse(isset($config['nested/missing']));
+    }
+
+    public function testArrayAccessSet()
+    {
+        $config = Configuration::create([new PhpReader()]);
+
+        $config['nested/key1'] = 'value1';
+        $this->assertEquals('value1', $config->get('nested/key1'));
+    }
+
+    public function testArrayAccessUnset()
+    {
+        $config = Configuration::create([new PhpReader()]);
+        $config->addConfiguration($this->getSimpleTestData());
+        unset($config['nested/key1']);
+        $this->assertFalse($config->has('nested/key1'));
     }
 }

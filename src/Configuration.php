@@ -2,6 +2,7 @@
 
 namespace Conphig;
 
+use Conphig\Exception\ConfigException;
 use Conphig\Exception\ConfigurationFileException;
 use Conphig\Exception\ConfigurationMissingException;
 use Conphig\FileReader\FileReader;
@@ -119,6 +120,51 @@ class Configuration implements \ArrayAccess
     }
 
     /**
+     * Sets a configuration value
+     *
+     * @param string $key
+     * @param $value
+     */
+    public function set(string $key, $value)
+    {
+        $keyParts = explode($this->separator, $key);
+        $this->recursiveSet($keyParts, $this->config, $value);
+    }
+
+    private function recursiveSet(array $keyParts, array &$config, $value)
+    {
+        $keyPart = array_shift($keyParts);
+        if (empty($keyParts)) {
+            $config[$keyPart] = $value;
+        } else {
+            if (!isset($config[$keyPart])) {
+                $config[$keyPart] = [];
+            } elseif (!is_array($config[$keyPart])) {
+                throw new ConfigException('Refusing to overwrite existing non-array value');
+            }
+            $this->recursiveSet($keyParts, $config[$keyPart], $value);
+        }
+    }
+
+    public function remove(string $key)
+    {
+        $keyParts = explode($this->separator, $key);
+        $this->recursiveRemove($keyParts, $this->config);
+    }
+
+    private function recursiveRemove(array $keyParts, array &$config)
+    {
+        $keyPart = array_shift($keyParts);
+        if (empty($keyParts)) {
+            unset($config[$keyPart]);
+        } else {
+            if (isset($config[$keyPart]) && is_array($config[$keyPart])) {
+                $this->recursiveRemove($keyParts, $config[$keyPart]);
+            }
+        }
+    }
+
+    /**
      * Retrieves all configuration information as an array
      *
      * @return array
@@ -206,11 +252,11 @@ class Configuration implements \ArrayAccess
 
     public function offsetSet($offset, $value)
     {
-        $this->config[$offset] = $value;
+        $this->set($offset, $value);
     }
 
     public function offsetUnset($offset)
     {
-        unset($this->config[$offset]);
+        $this->remove($offset);
     }
 }
