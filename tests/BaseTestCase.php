@@ -8,12 +8,12 @@ class BaseTestCase extends TestCase
 {
     protected function getConfigDir(): string
     {
-        return realpath(__DIR__ . '/config') . '/';
+        return realpath(__DIR__ . '/fixtures/valid') . '/';
     }
 
     protected function getInvalidConfigDir(): string
     {
-        return realpath(__DIR__ . '/invalid') . '/';
+        return realpath(__DIR__ . '/fixtures/invalid') . '/';
     }
 
     protected function getSimpleTestData(): array
