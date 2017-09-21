@@ -78,7 +78,7 @@ class Configuration implements \ArrayAccess
      */
     public function get(string $key, $default = null)
     {
-        $keyParts = explode($this->separator, $key);
+        $keyParts = $this->getKeyParts($key);
         $lastIndex = count($keyParts) - 1;
         $config = $this->config;
         foreach ($keyParts as $i => $keyPart) {
@@ -106,7 +106,7 @@ class Configuration implements \ArrayAccess
      */
     public function has(string $key): bool
     {
-        $keyParts = explode($this->separator, $key);
+        $keyParts = $this->getKeyParts($key);
         $config = $this->config;
         foreach ($keyParts as $keyPart) {
             if (!isset($config[$keyPart])) {
@@ -127,7 +127,7 @@ class Configuration implements \ArrayAccess
      */
     public function set(string $key, $value)
     {
-        $keyParts = explode($this->separator, $key);
+        $keyParts = $this->getKeyParts($key);
         $this->recursiveSet($keyParts, $this->config, $value);
     }
 
@@ -153,7 +153,7 @@ class Configuration implements \ArrayAccess
      */
     public function remove(string $key)
     {
-        $keyParts = explode($this->separator, $key);
+        $keyParts = $this->getKeyParts($key);
         $this->recursiveRemove($keyParts, $this->config);
     }
 
@@ -243,6 +243,19 @@ class Configuration implements \ArrayAccess
         if (!is_readable($file)) {
             throw new ConfigurationFileException($file, 0, null, ' is not readable');
         }
+    }
+
+    /**
+     * @param string $key
+     * @return array
+     */
+    private function getKeyParts(string $key): array
+    {
+        $keyParts = explode($this->separator, $key);
+        $keyParts = array_filter($keyParts, function(string $keyPart){
+            return !empty($keyPart);
+        });
+        return array_values($keyParts);
     }
 
     public function offsetExists($offset)

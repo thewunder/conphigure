@@ -18,6 +18,13 @@ class ConfigurationTest extends BaseTestCase
         $this->assertEquals('value1', $config->get('nested/key1'));
     }
 
+    public function testExtraSeparators()
+    {
+        $config = new Configuration([]);
+        $config->addConfiguration($this->getSimpleTestData());
+        $this->assertEquals('value1', $config->get('/nested//key1/'));
+    }
+
     public function testGetWithDefault()
     {
         $config = new Configuration([]);
