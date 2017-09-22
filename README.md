@@ -40,7 +40,7 @@ Read it in your php application like the following
 ``` php
 $config = Conphigure::create();
 
-//load configuration from a single file or directory full of configuration files
+//load configuration from a single file
 $config->read('/directory/myfile.yml');
 
 //get a value
@@ -65,16 +65,20 @@ $value = $config->get('missing/key');
 When reading a config directory Conphigure will (by default) organize the configuration in each file into a common root based
 on the file path.
 
-Given a directory with:
+For example, a directory /directory/config/ with:
 
 - system.yml
 - email.yml
 - logging.yml
 - subdirectory/something.yml
 
-By default Conphigure will prefix the values in each file with the file name.
-
 ``` php
+//read the directory
+$config->read('/directory/config/');
+
+//get all configuration as an array
+$config->all();
+
 //this will be the result
 $config = [
     'system' => ['...'], //contents of system.yml
@@ -85,8 +89,9 @@ $config = [
     ]
 ];
 
-
 ```
+
+This allows you to keep things organized, and keep each file very flat.
 
 ## Change log
 
