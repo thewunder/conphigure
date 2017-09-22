@@ -2,7 +2,7 @@
 
 namespace Conphigure;
 
-use Conphigure\Exception\ConfigException;
+use Conphigure\Exception\ConphigureException;
 use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\Exception\ConfigurationMissingException;
 use Conphigure\FileReader\FileReader;
@@ -139,7 +139,7 @@ class Conphigure implements \ArrayAccess
             if (!isset($config[$keyPart])) {
                 $config[$keyPart] = [];
             } elseif (!is_array($config[$keyPart])) {
-                throw new ConfigException('Refusing to overwrite existing non-array value');
+                throw new ConphigureException('Refusing to overwrite existing non-array value');
             }
             $this->recursiveSet($keyParts, $config[$keyPart], $value);
         }

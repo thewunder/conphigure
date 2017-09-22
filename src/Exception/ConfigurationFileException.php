@@ -7,7 +7,7 @@ use Throwable;
 /**
  * Thrown when there is an error reading a configuration file
  */
-class ConfigurationFileException extends ConfigException
+class ConfigurationFileException extends ConphigureException
 {
     public function __construct($file = '', $code = 0, Throwable $previous = null, $reason = '')
     {
