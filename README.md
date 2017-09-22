@@ -7,7 +7,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Conphigure is a framework agnostic configuration framework for php 7+.
+Conphigure is a framework agnostic library for reading and retrieving configuration.
 
 It can read individual files and directories in the following formats:
 
@@ -26,19 +26,34 @@ $ composer require thewunder/conphigure
 
 ## Usage
 
+If you have configuration in myfile.yml
+
+``` yaml
+smtp:
+  host: smtp.mycompany.com
+  port: 25
+
+```
+
+Read it in your php application like the following
+
 ``` php
-$config = Configuration::create();
+$config = Conphigure::create();
 
-//load configuration from a single file or directory
-$config->read('/my/config/dir/');
-
-//add configuration from somewhere else (cache / database / etc)
-$config->addConfiguration($myArray)
+//load configuration from a single file or directory full of configuration files
+$config->read('/directory/myfile.yml');
 
 //get a value
-$host = $config->get('database/host');
+$port = $config->get('smtp/port');
 
-//can also use like an array
+//add configuration from somewhere else (cache / database / etc)
+$config->addConfiguration([
+    'database' => [
+        'host' => 'localhost'
+    ]
+]);
+
+//you can also use it like an array
 $host = $config['database']['host'];
 $host = $config['database/host'];
 
@@ -46,6 +61,9 @@ $host = $config['database/host'];
 $value = $config->get('missing/key');
 
 ```
+
+When reading a config directory Conphigure will (by default) organize the configuration in each file into a common root based
+on the file path.
 
 Given a directory with:
 
