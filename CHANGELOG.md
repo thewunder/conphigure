@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.3
+
+### New Features
+
+- Add optional prefix when reading a file
+
 ## 0.9.2
 
 ### Fixes
