@@ -139,6 +139,13 @@ class ConfigurationTest extends BaseTestCase
         $this->assertEquals($this->getSimpleTestData(), $config->all());
     }
 
+    public function testReadFileWithPrefix()
+    {
+        $config = Configuration::create([new PhpReader()]);
+        $config->read($this->getConfigDir() . 'phpfile.php', 'prefix/sub');
+        $this->assertEquals($this->getSimpleTestData(), $config->get('prefix/sub'));
+    }
+
     /**
      * @expectedException \Conphig\Exception\ConfigurationFileException
      * @expectedExceptionMessageRegExp  /^Error reading configuration file .+ does not exist$/

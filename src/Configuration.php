@@ -180,15 +180,21 @@ class Configuration implements \ArrayAccess
     }
 
     /**
-     * Reads all configuration from the provided path
+     * Reads all configuration from the provided path, may overwrite existing configuration
      *
      * @param string $path Full path to file or directory
+     * @param string $prefix Optional prefix to add (delimited by the delimiter)
      */
-    public function read(string $path)
+    public function read(string $path, string $prefix = '')
     {
         $this->validatePath($path);
         $reader = $this->getFileReader($path);
-        $this->addConfiguration($reader->read($path));
+        $config = $reader->read($path);
+        if ($prefix) {
+            $this->set($prefix, $config);
+        } else {
+            $this->addConfiguration($config);
+        }
     }
 
     /**
