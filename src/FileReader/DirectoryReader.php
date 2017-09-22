@@ -1,9 +1,9 @@
 <?php
 
-namespace Conphig\FileReader;
+namespace Conphigure\FileReader;
 
-use Conphig\Configuration;
-use Conphig\Exception\ConfigurationFileException;
+use Conphigure\Configuration;
+use Conphigure\Exception\ConfigurationFileException;
 
 class DirectoryReader extends FileReader
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Conphig\FileReader;
+namespace Conphigure\FileReader;
 
 /**
  * Reads configuration data from an individual file

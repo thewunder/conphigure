@@ -1,5 +1,5 @@
 {
-    "name": "thewunder/conphig",
+    "name": "thewunder/conphigure",
     "type": "library",
     "description": "Multi-source configuration manager",
     "keywords": [
@@ -10,7 +10,7 @@
         "yaml",
         "ini"
     ],
-    "homepage": "https://github.com/thewunder/conphig",
+    "homepage": "https://github.com/thewunder/conphigure",
     "license": "MIT",
     "authors": [
         {
@@ -34,12 +34,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Conphig\\": "src"
+            "Conphigure\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Conphig\\Test\\": "tests"
+            "Conphigure\\Test\\": "tests"
         }
     },
     "scripts": {

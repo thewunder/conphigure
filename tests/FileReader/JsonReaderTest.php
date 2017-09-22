@@ -1,9 +1,9 @@
 <?php
 
-namespace Conphig\Test\FileReader;
+namespace Conphigure\Test\FileReader;
 
-use Conphig\FileReader\JsonReader;
-use Conphig\Test\BaseTestCase;
+use Conphigure\FileReader\JsonReader;
+use Conphigure\Test\BaseTestCase;
 
 class JsonReaderTest extends BaseTestCase
 {
@@ -17,7 +17,7 @@ class JsonReaderTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Conphig\Exception\ConfigurationFileException
+     * @expectedException \Conphigure\Exception\ConfigurationFileException
      */
     public function testInvalid()
     {

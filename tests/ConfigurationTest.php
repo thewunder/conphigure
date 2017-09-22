@@ -1,13 +1,13 @@
 <?php
 
-namespace Conphig\Test;
+namespace Conphigure\Test;
 
-use Conphig\Configuration;
-use Conphig\Exception\ConfigurationFileException;
-use Conphig\FileReader\DirectoryReader;
-use Conphig\FileReader\JsonReader;
-use Conphig\FileReader\PhpReader;
-use Conphig\FileReader\YamlReader;
+use Conphigure\Configuration;
+use Conphigure\Exception\ConfigurationFileException;
+use Conphigure\FileReader\DirectoryReader;
+use Conphigure\FileReader\JsonReader;
+use Conphigure\FileReader\PhpReader;
+use Conphigure\FileReader\YamlReader;
 
 class ConfigurationTest extends BaseTestCase
 {
@@ -32,7 +32,7 @@ class ConfigurationTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Conphig\Exception\ConfigurationMissingException
+     * @expectedException \Conphigure\Exception\ConfigurationMissingException
      */
     public function testMissing()
     {
@@ -91,7 +91,7 @@ class ConfigurationTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Conphig\Exception\ConfigurationFileException
+     * @expectedException \Conphigure\Exception\ConfigurationFileException
      */
     public function testGetMissingFileReader()
     {
@@ -147,7 +147,7 @@ class ConfigurationTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Conphig\Exception\ConfigurationFileException
+     * @expectedException \Conphigure\Exception\ConfigurationFileException
      * @expectedExceptionMessageRegExp  /^Error reading configuration file .+ does not exist$/
      */
     public function testReadMissingFile()
@@ -157,7 +157,7 @@ class ConfigurationTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Conphig\Exception\ConfigurationFileException
+     * @expectedException \Conphigure\Exception\ConfigurationFileException
      * @expectedExceptionMessageRegExp  /^Error reading configuration file .+ is not readable$/
      */
     public function testReadUnreadable()

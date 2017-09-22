@@ -1,11 +1,11 @@
 <?php
 
-namespace Conphig\Test\FileReader;
+namespace Conphigure\Test\FileReader;
 
-use Conphig\Configuration;
-use Conphig\FileReader\PhpReader;
-use Conphig\FileReader\DirectoryReader;
-use Conphig\Test\BaseTestCase;
+use Conphigure\Configuration;
+use Conphigure\FileReader\PhpReader;
+use Conphigure\FileReader\DirectoryReader;
+use Conphigure\Test\BaseTestCase;
 
 class DirectoryReaderTest extends BaseTestCase
 {
@@ -36,7 +36,7 @@ class DirectoryReaderTest extends BaseTestCase
     }
 
     /**
-     * @expectedException \Conphig\Exception\ConfigurationFileException
+     * @expectedException \Conphigure\Exception\ConfigurationFileException
      * @expectedExceptionMessageRegExp  /^Error reading configuration file .+ must be a directory$/
      */
     public function testReadNonDirectory()

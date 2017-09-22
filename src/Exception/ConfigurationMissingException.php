@@ -1,6 +1,6 @@
 <?php
 
-namespace Conphig\Exception;
+namespace Conphigure\Exception;
 
 use Throwable;
 

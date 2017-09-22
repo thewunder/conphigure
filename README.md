@@ -1,4 +1,4 @@
-# Conphig
+# Conphigure
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -7,7 +7,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Conphig is a framework agnostic configuration framework for php 7+.
+Conphigure is a framework agnostic configuration framework for php 7+.
 
 It can read individual files and directories in the following formats:
 
@@ -21,7 +21,7 @@ It can read individual files and directories in the following formats:
 Via Composer
 
 ``` bash
-$ composer require thewunder/conphig
+$ composer require thewunder/conphigure
 ```
 
 ## Usage
@@ -54,7 +54,7 @@ Given a directory with:
 - logging.yml
 - subdirectory/something.yml
 
-By default Conphig will prefix the values in each file with the file name.
+By default Conphigure will prefix the values in each file with the file name.
 
 ``` php
 //this will be the result
@@ -92,17 +92,17 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/thewunder/conphig.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/thewunder/conphigure.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/thewunder/conphig/master.svg?style=flat-square
-[ico-coverage]: https://coveralls.io/repos/github/thewunder/conphig/badge.svg?branch=master
+[ico-travis]: https://img.shields.io/travis/thewunder/conphigure/master.svg?style=flat-square
+[ico-coverage]: https://coveralls.io/repos/github/thewunder/conphigure/badge.svg?branch=master
 [ico-code-quality]: https://insight.sensiolabs.com/projects/a7c49441-93c2-4480-9902-3c428473073d/mini.png
-[ico-downloads]: https://img.shields.io/packagist/dt/thewunder/conphig.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/thewunder/conphigure.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/thewunder/conphig
-[link-travis]: https://travis-ci.org/thewunder/conphig
-[link-coverage]: https://coveralls.io/github/thewunder/conphig?branch=master
+[link-packagist]: https://packagist.org/packages/thewunder/conphigure
+[link-travis]: https://travis-ci.org/thewunder/conphigure
+[link-coverage]: https://coveralls.io/github/thewunder/conphigure?branch=master
 [link-code-quality]: https://insight.sensiolabs.com/projects/a7c49441-93c2-4480-9902-3c428473073d
-[link-downloads]: https://packagist.org/packages/thewunder/conphig
+[link-downloads]: https://packagist.org/packages/thewunder/conphigure
 [link-author]: https://github.com/thewunder
 [link-contributors]: ../../contributors

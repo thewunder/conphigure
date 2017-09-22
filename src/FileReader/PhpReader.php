@@ -1,8 +1,8 @@
 <?php
 
-namespace Conphig\FileReader;
+namespace Conphigure\FileReader;
 
-use Conphig\Exception\ConfigurationFileException;
+use Conphigure\Exception\ConfigurationFileException;
 
 class PhpReader extends FileReader
 {

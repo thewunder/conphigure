@@ -1,8 +1,8 @@
 <?php
 
-namespace Conphig\FileReader;
+namespace Conphigure\FileReader;
 
-use Conphig\Exception\ConfigurationFileException;
+use Conphigure\Exception\ConfigurationFileException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser;
 

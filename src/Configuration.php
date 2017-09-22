@@ -1,19 +1,19 @@
 <?php
 
-namespace Conphig;
+namespace Conphigure;
 
-use Conphig\Exception\ConfigException;
-use Conphig\Exception\ConfigurationFileException;
-use Conphig\Exception\ConfigurationMissingException;
-use Conphig\FileReader\FileReader;
-use Conphig\FileReader\IniReader;
-use Conphig\FileReader\JsonReader;
-use Conphig\FileReader\PhpReader;
-use Conphig\FileReader\YamlReader;
-use Conphig\FileReader\DirectoryReader;
+use Conphigure\Exception\ConfigException;
+use Conphigure\Exception\ConfigurationFileException;
+use Conphigure\Exception\ConfigurationMissingException;
+use Conphigure\FileReader\FileReader;
+use Conphigure\FileReader\IniReader;
+use Conphigure\FileReader\JsonReader;
+use Conphigure\FileReader\PhpReader;
+use Conphigure\FileReader\YamlReader;
+use Conphigure\FileReader\DirectoryReader;
 
 /**
- * Main entry point to the Conphig library
+ * Main entry point to the Conphigure library
  */
 class Configuration implements \ArrayAccess
 {
@@ -34,7 +34,6 @@ class Configuration implements \ArrayAccess
 
 
     /**
-     * Configuration constructor.
      * @param FileReader[] $fileReaders
      * @param string $separator Character to separate complex configuration keys
      */
