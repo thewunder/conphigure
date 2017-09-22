@@ -1,7 +1,7 @@
 {
     "name": "thewunder/conphigure",
     "type": "library",
-    "description": "Multi-source configuration manager",
+    "description": "Framework Agnostic Configuration Library",
     "keywords": [
         "settings",
         "config",
