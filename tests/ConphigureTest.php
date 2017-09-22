@@ -2,32 +2,32 @@
 
 namespace Conphigure\Test;
 
-use Conphigure\Configuration;
+use Conphigure\Conphigure;
 use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\DirectoryReader;
 use Conphigure\FileReader\JsonReader;
 use Conphigure\FileReader\PhpReader;
 use Conphigure\FileReader\YamlReader;
 
-class ConfigurationTest extends BaseTestCase
+class ConphigureTest extends BaseTestCase
 {
     public function testGet()
     {
-        $config = new Configuration([]);
+        $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertEquals('value1', $config->get('nested/key1'));
     }
 
     public function testExtraSeparators()
     {
-        $config = new Configuration([]);
+        $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertEquals('value1', $config->get('/nested//key1/'));
     }
 
     public function testGetWithDefault()
     {
-        $config = new Configuration([]);
+        $config = new Conphigure([]);
         $this->assertEquals(false, $config->get('nested/key1', false));
     }
 
@@ -36,14 +36,14 @@ class ConfigurationTest extends BaseTestCase
      */
     public function testMissing()
     {
-        $config = new Configuration([]);
+        $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $config->get('nested/asdf');
     }
 
     public function testHas()
     {
-        $config = new Configuration([]);
+        $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertTrue($config->has('nested/key1'));
         $this->assertFalse($config->has('nested/missing'));
@@ -51,7 +51,7 @@ class ConfigurationTest extends BaseTestCase
 
     public function testSet()
     {
-        $config = new Configuration([]);
+        $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $config->set('nested/key1', 'new');
         $config->set('newnested/newkey', 'new');
@@ -61,7 +61,7 @@ class ConfigurationTest extends BaseTestCase
 
     public function testRemove()
     {
-        $config = new Configuration([]);
+        $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $config->remove('nested/key1');
         $this->assertFalse($config->has('nested/key1'));
@@ -69,7 +69,7 @@ class ConfigurationTest extends BaseTestCase
 
     public function testOverwrite()
     {
-        $config = new Configuration([]);
+        $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $config->addConfiguration(['nested'=>['key1'=>'new']]);
         $this->assertEquals('new', $config->get('nested/key1'));
@@ -77,14 +77,14 @@ class ConfigurationTest extends BaseTestCase
 
     public function testGetFileReader()
     {
-        $config = new Configuration([new PhpReader()]);
+        $config = new Conphigure([new PhpReader()]);
         $reader = $config->getFileReader('dir/file.php');
         $this->assertInstanceOf(PhpReader::class, $reader);
     }
 
     public function testGetDirectoryReader()
     {
-        $config = new Configuration([new PhpReader()]);
+        $config = new Conphigure([new PhpReader()]);
         $config->addFileReader(new DirectoryReader($config));
         $reader = $config->getFileReader($this->getConfigDir());
         $this->assertInstanceOf(DirectoryReader::class, $reader);
@@ -95,14 +95,14 @@ class ConfigurationTest extends BaseTestCase
      */
     public function testGetMissingFileReader()
     {
-        $config = new Configuration([new PhpReader()]);
+        $config = new Conphigure([new PhpReader()]);
         $config->getFileReader('dir/file.toml');
     }
 
     public function testCreate()
     {
-        $config = Configuration::create();
-        $this->assertInstanceOf(Configuration::class, $config);
+        $config = Conphigure::create();
+        $this->assertInstanceOf(Conphigure::class, $config);
 
         //test that all readers have been added
         $reader = $config->getFileReader('dir/file.php');
@@ -117,8 +117,8 @@ class ConfigurationTest extends BaseTestCase
 
     public function testCreateWithReaders()
     {
-        $config = Configuration::create([new PhpReader()]);
-        $this->assertInstanceOf(Configuration::class, $config);
+        $config = Conphigure::create([new PhpReader()]);
+        $this->assertInstanceOf(Conphigure::class, $config);
 
         //test that all readers have been added
         $reader = $config->getFileReader('dir/file.php');
@@ -134,14 +134,14 @@ class ConfigurationTest extends BaseTestCase
 
     public function testReadFile()
     {
-        $config = Configuration::create([new PhpReader()]);
+        $config = Conphigure::create([new PhpReader()]);
         $config->read($this->getConfigDir() . 'phpfile.php');
         $this->assertEquals($this->getSimpleTestData(), $config->all());
     }
 
     public function testReadFileWithPrefix()
     {
-        $config = Configuration::create([new PhpReader()]);
+        $config = Conphigure::create([new PhpReader()]);
         $config->read($this->getConfigDir() . 'phpfile.php', 'prefix/sub');
         $this->assertEquals($this->getSimpleTestData(), $config->get('prefix/sub'));
     }
@@ -152,7 +152,7 @@ class ConfigurationTest extends BaseTestCase
      */
     public function testReadMissingFile()
     {
-        $config = Configuration::create([new PhpReader()]);
+        $config = Conphigure::create([new PhpReader()]);
         $config->read($this->getConfigDir() . 'missing.php');
     }
 
@@ -163,7 +163,7 @@ class ConfigurationTest extends BaseTestCase
     public function testReadUnreadable()
     {
         if (file_exists('/root')) {
-            $config = Configuration::create([new PhpReader()]);
+            $config = Conphigure::create([new PhpReader()]);
             $config->read('/root');
         } else {
             $this->markTestSkipped('/root does not exist');
@@ -172,7 +172,7 @@ class ConfigurationTest extends BaseTestCase
 
     public function testReadDirectory()
     {
-        $config = Configuration::create();
+        $config = Conphigure::create();
         $config->read($this->getConfigDir());
         $testData = $this->getSimpleTestData();
         $this->assertEquals($testData, $config->get('phpfile'));
@@ -185,14 +185,14 @@ class ConfigurationTest extends BaseTestCase
 
     public function testReadDirectoryNoPrefix()
     {
-        $config = Configuration::create([], '/', false);
+        $config = Conphigure::create([], '/', false);
         $config->read($this->getConfigDir());
         $this->assertEquals($this->getSimpleTestData(), $config->all());
     }
 
     public function testArrayAccessGet()
     {
-        $config = Configuration::create([new PhpReader()]);
+        $config = Conphigure::create([new PhpReader()]);
 
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertEquals('value1', $config['nested/key1']);
@@ -200,7 +200,7 @@ class ConfigurationTest extends BaseTestCase
 
     public function testArrayAccessIsset()
     {
-        $config = Configuration::create([new PhpReader()]);
+        $config = Conphigure::create([new PhpReader()]);
 
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertTrue(isset($config['nested/key1']));
@@ -209,7 +209,7 @@ class ConfigurationTest extends BaseTestCase
 
     public function testArrayAccessSet()
     {
-        $config = Configuration::create([new PhpReader()]);
+        $config = Conphigure::create([new PhpReader()]);
 
         $config['nested/key1'] = 'value1';
         $this->assertEquals('value1', $config->get('nested/key1'));
@@ -217,7 +217,7 @@ class ConfigurationTest extends BaseTestCase
 
     public function testArrayAccessUnset()
     {
-        $config = Configuration::create([new PhpReader()]);
+        $config = Conphigure::create([new PhpReader()]);
         $config->addConfiguration($this->getSimpleTestData());
         unset($config['nested/key1']);
         $this->assertFalse($config->has('nested/key1'));

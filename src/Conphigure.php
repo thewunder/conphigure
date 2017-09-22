@@ -15,7 +15,7 @@ use Conphigure\FileReader\DirectoryReader;
 /**
  * Main entry point to the Conphigure library
  */
-class Configuration implements \ArrayAccess
+class Conphigure implements \ArrayAccess
 {
     const DEFAULT_SEPARATOR = '/';
 
