@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.4
+
+## New Features
+- Renamed to Conphigure
+- Additional an improved documentation
+
 ## 0.9.3
 
 ### New Features
