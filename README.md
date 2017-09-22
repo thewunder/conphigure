@@ -114,13 +114,13 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/thewunder/conphigure/master.svg?style=flat-square
 [ico-coverage]: https://coveralls.io/repos/github/thewunder/conphigure/badge.svg?branch=master
-[ico-code-quality]: https://insight.sensiolabs.com/projects/a7c49441-93c2-4480-9902-3c428473073d/mini.png
+[ico-code-quality]: https://insight.sensiolabs.com/projects/2adc23b5-79f6-406f-863f-b90d279867ab/mini.png
 [ico-downloads]: https://img.shields.io/packagist/dt/thewunder/conphigure.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/thewunder/conphigure
 [link-travis]: https://travis-ci.org/thewunder/conphigure
 [link-coverage]: https://coveralls.io/github/thewunder/conphigure?branch=master
-[link-code-quality]: https://insight.sensiolabs.com/projects/a7c49441-93c2-4480-9902-3c428473073d
+[link-code-quality]: https://insight.sensiolabs.com/projects/2adc23b5-79f6-406f-863f-b90d279867ab
 [link-downloads]: https://packagist.org/packages/thewunder/conphigure
 [link-author]: https://github.com/thewunder
 [link-contributors]: ../../contributors
