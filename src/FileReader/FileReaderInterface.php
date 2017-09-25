@@ -5,7 +5,7 @@ namespace Conphigure\FileReader;
 /**
  * Reads configuration data from an individual file
  */
-interface FileReader
+interface FileReaderInterface
 {
     /**
      * Returns an array of extensions this class can read

@@ -4,7 +4,7 @@ namespace Conphigure\FileReader;
 
 use Conphigure\Exception\ConfigurationFileException;
 
-class IniReader implements FileReader
+class IniReader implements FileReaderInterface
 {
     public function read(string $file): array
     {

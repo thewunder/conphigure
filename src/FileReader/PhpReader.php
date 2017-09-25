@@ -4,7 +4,7 @@ namespace Conphigure\FileReader;
 
 use Conphigure\Exception\ConfigurationFileException;
 
-class PhpReader implements FileReader
+class PhpReader implements FileReaderInterface
 {
     public function read(string $file): array
     {

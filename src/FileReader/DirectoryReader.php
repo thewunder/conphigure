@@ -5,7 +5,7 @@ namespace Conphigure\FileReader;
 use Conphigure\Conphigure;
 use Conphigure\Exception\ConfigurationFileException;
 
-class DirectoryReader implements FileReader
+class DirectoryReader implements FileReaderInterface
 {
     /**
      * @var Conphigure

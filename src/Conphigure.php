@@ -5,7 +5,7 @@ namespace Conphigure;
 use Conphigure\Exception\ConphigureException;
 use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\Exception\ConfigurationMissingException;
-use Conphigure\FileReader\FileReader;
+use Conphigure\FileReader\FileReaderInterface;
 use Conphigure\FileReader\IniReader;
 use Conphigure\FileReader\JsonReader;
 use Conphigure\FileReader\PhpReader;
@@ -34,7 +34,7 @@ class Conphigure implements \ArrayAccess
 
 
     /**
-     * @param FileReader[] $fileReaders
+     * @param FileReaderInterface[] $fileReaders
      * @param string $separator Character to separate complex configuration keys
      */
     public function __construct(array $fileReaders, string $separator = self::DEFAULT_SEPARATOR)
@@ -57,7 +57,7 @@ class Conphigure implements \ArrayAccess
     }
 
     /**
-     * @return FileReader[]
+     * @return FileReaderInterface[]
      */
     protected static function allReaders(): array
     {
@@ -207,9 +207,9 @@ class Conphigure implements \ArrayAccess
     }
 
     /**
-     * @param FileReader $fileReader
+     * @param FileReaderInterface $fileReader
      */
-    public function addFileReader(FileReader $fileReader)
+    public function addFileReader(FileReaderInterface $fileReader)
     {
         foreach ($fileReader->getExtensions() as $extension) {
             $this->fileReaders[$extension] = $fileReader;
@@ -218,9 +218,9 @@ class Conphigure implements \ArrayAccess
 
     /**
      * @param string $path A file path, the extension is used to determine which file reader is loaded
-     * @return FileReader
+     * @return FileReaderInterface
      */
-    public function getFileReader(string $path): FileReader
+    public function getFileReader(string $path): FileReaderInterface
     {
         if (is_dir($path)) {
             $key = '/';
