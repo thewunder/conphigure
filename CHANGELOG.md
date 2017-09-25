@@ -1,10 +1,16 @@
 # Changelog
 
+## 0.9.5
+
+## New Features
+- Made FileReader an interface
+- More phpdoc
+
 ## 0.9.4
 
 ## New Features
 - Renamed to Conphigure
-- Additional an improved documentation
+- Additional and improved documentation
 
 ## 0.9.3
 
