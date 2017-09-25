@@ -45,6 +45,12 @@ class Conphigure implements \ArrayAccess
         $this->separator = $separator;
     }
 
+    /**
+     * @param FileReaderInterface[] $fileReaders If empty, all bundled file readers will be added
+     * @param string $separator Separator for reading configuration paths
+     * @param bool $prefixFiles Set contents of each file with a prefix based on the file name when reading directories
+     * @return Conphigure
+     */
     public static function create(array $fileReaders = [], $separator = self::DEFAULT_SEPARATOR, bool $prefixFiles = true): self
     {
         if (empty($fileReaders)) {
@@ -57,6 +63,8 @@ class Conphigure implements \ArrayAccess
     }
 
     /**
+     * Creates all bundled file readers
+     *
      * @return FileReaderInterface[]
      */
     protected static function allReaders(): array
@@ -251,6 +259,8 @@ class Conphigure implements \ArrayAccess
     }
 
     /**
+     * Splits a key up into an array of key parts
+     *
      * @param string $key
      * @return array
      */

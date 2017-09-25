@@ -16,6 +16,10 @@ class DirectoryReader implements FileReaderInterface
      */
     private $prefixWithFile;
 
+    /**
+     * @param Conphigure $config
+     * @param bool $prefixWithFile Set contents of each file with a prefix based on the file name
+     */
     public function __construct(Conphigure $config, bool $prefixWithFile = true)
     {
         $this->config = $config;
