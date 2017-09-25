@@ -59,6 +59,17 @@ class ConphigureTest extends BaseTestCase
         $this->assertEquals('new', $config->get('newnested/newkey'));
     }
 
+    /**
+     * @expectedException \Conphigure\Exception\ConphigureException
+     * @expectedExceptionMessageRegExp /^Refusing to overwrite existing non-array value at/
+     */
+    public function testSetOverwriteException()
+    {
+        $config = new Conphigure([]);
+        $config->addConfiguration($this->getSimpleTestData());
+        $config->set('simple/key1', 'new');
+    }
+
     public function testRemove()
     {
         $config = new Conphigure([]);

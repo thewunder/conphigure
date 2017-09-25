@@ -147,7 +147,7 @@ class Conphigure implements \ArrayAccess
             if (!isset($config[$keyPart])) {
                 $config[$keyPart] = [];
             } elseif (!is_array($config[$keyPart])) {
-                throw new ConphigureException('Refusing to overwrite existing non-array value');
+                throw new ConphigureException("Refusing to overwrite existing non-array value at '$keyPart'");
             }
             $this->recursiveSet($keyParts, $config[$keyPart], $value);
         }
