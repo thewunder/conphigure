@@ -6,7 +6,7 @@ use Conphigure\Exception\ConfigurationFileException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser;
 
-class YamlReader extends FileReader
+class YamlReader implements FileReader
 {
     /**
      * @var Parser

@@ -4,7 +4,7 @@ namespace Conphigure\FileReader;
 
 use Conphigure\Exception\ConfigurationFileException;
 
-class JsonReader extends FileReader
+class JsonReader implements FileReader
 {
     public function getExtensions(): array
     {
