@@ -15,7 +15,7 @@ interface FileReaderInterface
     public function getExtensions(): array;
 
     /**
-     * Reads the file and returns the data contained there in
+     * Reads the file and returns the data contained therein
      *
      * @param string $file Full path to file
      * @return array
