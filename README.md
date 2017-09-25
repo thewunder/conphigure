@@ -8,7 +8,7 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Conphigure is a framework agnostic library for reading and retrieving configuration.
-If your application does not 
+If your application has outgrown a single configuration file this library will be a good choice.
 
 It can read individual files and directories in the following formats:
 
