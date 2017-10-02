@@ -191,8 +191,10 @@ class Conphigure implements \ArrayAccess
      *
      * @param string $path Full path to file or directory
      * @param string $prefix Optional prefix to add (delimited by the delimiter)
+     *
+     * @return array Configuration read from the specified path
      */
-    public function read(string $path, string $prefix = '')
+    public function read(string $path, string $prefix = ''): array
     {
         $this->validatePath($path);
         $reader = $this->getFileReader($path);
@@ -202,6 +204,7 @@ class Conphigure implements \ArrayAccess
         } else {
             $this->addConfiguration($config);
         }
+        return $config;
     }
 
     /**

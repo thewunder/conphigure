@@ -146,8 +146,9 @@ class ConphigureTest extends BaseTestCase
     public function testReadFile()
     {
         $config = Conphigure::create([new PhpReader()]);
-        $config->read($this->getConfigDir() . 'phpfile.php');
+        $return = $config->read($this->getConfigDir() . 'phpfile.php');
         $this->assertEquals($this->getSimpleTestData(), $config->all());
+        $this->assertEquals($this->getSimpleTestData(), $return);
     }
 
     public function testReadFileWithPrefix()
