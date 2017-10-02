@@ -208,7 +208,7 @@ class Conphigure implements \ArrayAccess
     }
 
     /**
-     * Adds configuration, configuration added later override values provided from previous sources
+     * Adds configuration, configuration added later overrides values provided from previous sources
      *
      * @param array $config
      */
