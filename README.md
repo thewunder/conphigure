@@ -48,11 +48,12 @@ $config->read('/directory/myfile.yml');
 $port = $config->get('smtp/port');
 
 //add configuration from somewhere else (cache / database / etc)
-$config->addConfiguration([
-    'database' => [
-        'host' => 'localhost'
-    ]
-]);
+$arrayFromSomewhere = [
+     'database' => [
+         'host' => 'localhost'
+     ]
+ ];
+$config->addConfiguration($arrayFromSomewhere);
 
 //you can also use it like an array
 $host = $config['database']['host'];
@@ -78,10 +79,10 @@ For example, a directory /directory/config/ with:
 $config->read('/directory/config/');
 
 //get all configuration as an array
-$config->all();
-
-//this will be the result
-$config = [
+$all = $config->all();
+var_export($all);
+/* The result will be:
+[
     'system' => ['...'], //contents of system.yml
     'email' => ['...'], //contents of email.yml
     'logging' => ['...'], //contents of logging.yml
@@ -89,6 +90,7 @@ $config = [
         'something' => ['...'], //contents of subdirectory/something.yml
     ]
 ];
+*/
 
 ```
 
