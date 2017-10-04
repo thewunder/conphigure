@@ -10,6 +10,9 @@
 ## Fixes
 - Don't use an empty file name as a prefix when reading a directory
 
+## Backward Compatibility Breaks
+- Pass in Yaml parser to YamlReader as a constructor argument
+
 ## 0.9.5
 
 ## New Features
