@@ -10,12 +10,15 @@
 Conphigure is a framework agnostic library for reading and retrieving configuration.
 If your application has outgrown a single configuration file this library will be a good choice.
 
-It can read individual files and directories in the following formats:
+It can read configuration files in the following formats:
 
 - php
 - yaml
 - json
 - ini
+- dotenv
+
+Conphigure can also read entire directories containing configuration files.
 
 ## Install
 
