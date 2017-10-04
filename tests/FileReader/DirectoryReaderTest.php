@@ -16,6 +16,8 @@ class DirectoryReaderTest extends BaseTestCase
         $configuration = $dirSource->read($this->getConfigDir());
 
         $testData = $this->getSimpleTestData();
+        $this->assertArrayHasKey('simple', $configuration);
+        $this->assertEquals('simple value', $configuration['simple']);
         $this->assertEquals($testData, $configuration['jsonfile']);
         $this->assertEquals($testData, $configuration['phpfile']);
         $this->assertEquals($testData, $configuration['yamlfile']);
