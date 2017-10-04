@@ -18,7 +18,7 @@ use Conphigure\FileReader\DirectoryReader;
  */
 class Conphigure implements \ArrayAccess
 {
-    const DEFAULT_SEPARATOR = '/';
+    const DEFAULT_DELIMITER = '/';
 
     /**
      * @var array
@@ -27,7 +27,7 @@ class Conphigure implements \ArrayAccess
     /**
      * @var string
      */
-    private $separator;
+    private $delimiter;
     /**
      * @var array
      */
@@ -36,28 +36,28 @@ class Conphigure implements \ArrayAccess
 
     /**
      * @param FileReaderInterface[] $fileReaders
-     * @param string $separator Character to separate complex configuration keys
+     * @param string $delimiter Character used to separate nested levels of configuration
      */
-    public function __construct(array $fileReaders, string $separator = self::DEFAULT_SEPARATOR)
+    public function __construct(array $fileReaders, string $delimiter = self::DEFAULT_DELIMITER)
     {
         foreach ($fileReaders as $fileReader) {
             $this->addFileReader($fileReader);
         }
-        $this->separator = $separator;
+        $this->delimiter = $delimiter;
     }
 
     /**
      * @param FileReaderInterface[] $fileReaders If empty, all bundled file readers will be added
-     * @param string $separator Separator for reading configuration paths
+     * @param string $delimiter Character used to separate nested levels of configuration
      * @param bool $prefixFiles Set contents of each file with a prefix based on the file name when reading directories
      * @return Conphigure
      */
-    public static function create(array $fileReaders = [], $separator = self::DEFAULT_SEPARATOR, bool $prefixFiles = true): self
+    public static function create(array $fileReaders = [], string $delimiter = self::DEFAULT_DELIMITER, bool $prefixFiles = true): self
     {
         if (empty($fileReaders)) {
             $fileReaders = self::allReaders();
         }
-        $config = new self($fileReaders, $separator);
+        $config = new self($fileReaders, $delimiter);
         $directoryReader = new DirectoryReader($config, $prefixFiles);
         $config->addFileReader($directoryReader);
         return $config;
@@ -273,7 +273,7 @@ class Conphigure implements \ArrayAccess
      */
     private function getKeyParts(string $key): array
     {
-        $keyParts = explode($this->separator, $key);
+        $keyParts = explode($this->delimiter, $key);
         $keyParts = array_filter($keyParts, function(string $keyPart){
             return !empty($keyPart);
         });
