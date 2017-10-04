@@ -5,6 +5,9 @@ namespace Conphigure\FileReader;
 use Conphigure\Conphigure;
 use Conphigure\Exception\ConfigurationFileException;
 
+/**
+ * Reads recursively reads all configuration files in a directory and combines them into a single array
+ */
 class DirectoryReader implements FileReaderInterface
 {
     /**

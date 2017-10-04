@@ -4,6 +4,9 @@ namespace Conphigure\FileReader;
 
 use Conphigure\Exception\ConfigurationFileException;
 
+/**
+ * Reads .ini files
+ */
 class IniReader implements FileReaderInterface
 {
     public function read(string $file): array

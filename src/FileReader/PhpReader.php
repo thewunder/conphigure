@@ -4,6 +4,9 @@ namespace Conphigure\FileReader;
 
 use Conphigure\Exception\ConfigurationFileException;
 
+/**
+ * Reads configuration from .php files that return an array
+ */
 class PhpReader implements FileReaderInterface
 {
     public function read(string $file): array

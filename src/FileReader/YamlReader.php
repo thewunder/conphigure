@@ -6,6 +6,9 @@ use Conphigure\Exception\ConfigurationFileException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser;
 
+/**
+ * Reads YAML files using Symfony's YAML parser
+ */
 class YamlReader implements FileReaderInterface
 {
     /**

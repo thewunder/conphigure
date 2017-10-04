@@ -4,6 +4,9 @@ namespace Conphigure\FileReader;
 
 use Conphigure\Exception\ConfigurationFileException;
 
+/**
+ * Reads JSON files as an array
+ */
 class JsonReader implements FileReaderInterface
 {
     public function getExtensions(): array

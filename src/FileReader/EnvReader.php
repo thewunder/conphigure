@@ -6,6 +6,9 @@ use Conphigure\Exception\ConfigurationFileException;
 use Dotenv\Exception\InvalidFileException;
 use Dotenv\Loader;
 
+/**
+ * Reads from .env files, unlike reading directly with the dotenv library, it will not set $_ENV or $_SERVER globals
+ */
 class EnvReader extends Loader implements FileReaderInterface
 {
     public function __construct($filePath = '', $immutable = false)
