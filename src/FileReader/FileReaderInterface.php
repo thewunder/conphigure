@@ -3,7 +3,7 @@
 namespace Conphigure\FileReader;
 
 /**
- * Reads configuration data from an individual file
+ * Reads configuration data from a file
  */
 interface FileReaderInterface
 {
