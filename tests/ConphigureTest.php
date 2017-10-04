@@ -5,6 +5,7 @@ namespace Conphigure\Test;
 use Conphigure\Conphigure;
 use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\DirectoryReader;
+use Conphigure\FileReader\EnvReader;
 use Conphigure\FileReader\JsonReader;
 use Conphigure\FileReader\PhpReader;
 use Conphigure\FileReader\YamlReader;
@@ -122,6 +123,8 @@ class ConphigureTest extends BaseTestCase
         $this->assertInstanceOf(YamlReader::class, $reader);
         $reader = $config->getFileReader('dir/file.json');
         $this->assertInstanceOf(JsonReader::class, $reader);
+        $reader = $config->getFileReader('dir/file.env');
+        $this->assertInstanceOf(EnvReader::class, $reader);
         $reader = $config->getFileReader($this->getConfigDir());
         $this->assertInstanceOf(DirectoryReader::class, $reader);
     }

@@ -5,6 +5,7 @@ namespace Conphigure;
 use Conphigure\Exception\ConphigureException;
 use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\Exception\ConfigurationMissingException;
+use Conphigure\FileReader\EnvReader;
 use Conphigure\FileReader\FileReaderInterface;
 use Conphigure\FileReader\IniReader;
 use Conphigure\FileReader\JsonReader;
@@ -72,6 +73,9 @@ class Conphigure implements \ArrayAccess
         $readers = [new PhpReader(), new JsonReader(), new IniReader()];
         if (class_exists('Symfony\\Component\\Yaml\\Parser')) {
             $readers[] = new YamlReader();
+        }
+        if (class_exists('Dotenv\\Loader')) {
+            $readers[] = new EnvReader();
         }
         return $readers;
     }
