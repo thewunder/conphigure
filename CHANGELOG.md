@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0
+
+## New Features
+- Added .env file support
+- Return configuration from file in read()
+- More phpdoc
+
+## Fixes
+- Don't use an empty file name as a prefix when reading a directory
+
 ## 0.9.5
 
 ## New Features
