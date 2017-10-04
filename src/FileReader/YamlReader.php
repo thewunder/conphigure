@@ -16,12 +16,9 @@ class YamlReader implements FileReaderInterface
      */
     private $parser;
 
-    public function __construct()
+    public function __construct(Parser $parser)
     {
-        if (!class_exists('Symfony\\Component\\Yaml\\Parser')) {
-            throw new ConfigurationFileException('Symfony yaml must be installed to read yaml files');
-        }
-        $this->parser = new Parser();
+        $this->parser = $parser;
     }
 
     public function getExtensions(): array

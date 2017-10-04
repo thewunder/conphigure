@@ -4,12 +4,13 @@ namespace Conphigure\Test\FileReader;
 
 use Conphigure\FileReader\YamlReader;
 use Conphigure\Test\BaseTestCase;
+use Symfony\Component\Yaml\Parser;
 
 class YamlReaderTest extends BaseTestCase
 {
     public function testRead()
     {
-        $reader = new YamlReader();
+        $reader = new YamlReader(new Parser());
 
         $config = $this->getSimpleTestData();
 
@@ -21,7 +22,7 @@ class YamlReaderTest extends BaseTestCase
      */
     public function testInvalid()
     {
-        $reader = new YamlReader();
+        $reader = new YamlReader(new Parser());
         $reader->read($this->getInvalidConfigDir() . 'yamlfile.yml');
     }
 }

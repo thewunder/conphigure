@@ -12,6 +12,7 @@ use Conphigure\FileReader\JsonReader;
 use Conphigure\FileReader\PhpReader;
 use Conphigure\FileReader\YamlReader;
 use Conphigure\FileReader\DirectoryReader;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * Main entry point to the Conphigure library
@@ -72,7 +73,7 @@ class Conphigure implements \ArrayAccess
     {
         $readers = [new PhpReader(), new JsonReader(), new IniReader()];
         if (class_exists('Symfony\\Component\\Yaml\\Parser')) {
-            $readers[] = new YamlReader();
+            $readers[] = new YamlReader(new Parser());
         }
         if (class_exists('Dotenv\\Loader')) {
             $readers[] = new EnvReader();
