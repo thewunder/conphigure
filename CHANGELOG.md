@@ -8,26 +8,26 @@
 
 ## 1.0
 
-## New Features
+### New Features
 - Added .env file support
 - Return configuration from file in read()
 - More phpdoc
 
-## Fixes
+### Fixes
 - Don't use an empty file name as a prefix when reading a directory
 
-## Backward Compatibility Breaks
+### Backward Compatibility Breaks
 - Pass in Yaml parser to YamlReader as a constructor argument
 
 ## 0.9.5
 
-## New Features
+### New Features
 - Made FileReader an interface
 - More phpdoc
 
-## 0.9.4
+### 0.9.4
 
-## New Features
+### New Features
 - Renamed to Conphigure
 - Additional and improved documentation
 
