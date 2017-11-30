@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1
+
+### New Features
+- Allow Symfony YAML 4.x
+- Tested in PHP 7.2
+
 ## 1.0
 
 ## New Features
