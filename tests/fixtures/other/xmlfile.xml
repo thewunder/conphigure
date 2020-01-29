@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <withAttributes attr1="value1" attr2="value2"/>
+    <duplicate>value1</duplicate>
+    <duplicate>value2</duplicate>
+    <childrenWin attr="attr">
+        <child1>value1</child1>
+        <child2>value2</child2>
+        random text content is ignored
+    </childrenWin>
+</root>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <simple>simple value</simple>
+    <nested>
+        <key1>value1</key1>
+        <key2>value2</key2>
+    </nested>
+</root>

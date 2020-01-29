@@ -2,7 +2,6 @@
 
 namespace Conphigure;
 
-use Config\FileReader\XmlReader;
 use Conphigure\Exception\ConphigureException;
 use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\Exception\ConfigurationMissingException;
@@ -11,6 +10,7 @@ use Conphigure\FileReader\FileReaderInterface;
 use Conphigure\FileReader\IniReader;
 use Conphigure\FileReader\JsonReader;
 use Conphigure\FileReader\PhpReader;
+use Conphigure\FileReader\XmlReader;
 use Conphigure\FileReader\YamlReader;
 use Conphigure\FileReader\DirectoryReader;
 use Symfony\Component\Yaml\Parser;
@@ -75,6 +75,9 @@ class Conphigure implements \ArrayAccess
         $readers = [new PhpReader(), new IniReader()];
         if (extension_loaded('json')) {
             $readers[] = new JsonReader();
+        }
+        if (extension_loaded('SimpleXML')) {
+            $readers[] = new XmlReader();
         }
         if (class_exists('Symfony\\Component\\Yaml\\Parser')) {
             $readers[] = new YamlReader(new Parser());

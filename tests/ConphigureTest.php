@@ -194,6 +194,7 @@ class ConphigureTest extends BaseTestCase
         $this->assertEquals($testData, $config->get('yamlfile'));
         $this->assertEquals($testData, $config->get('jsonfile'));
         $this->assertEquals($testData, $config->get('inifile'));
+        $this->assertEquals($testData, $config->get('xmlfile'));
         $this->assertEquals($testData, $config->get('subdir/phpfile'));
         $this->assertEquals($testData, $config->get('subdir/subsubdir/phpfile'));
     }
