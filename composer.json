@@ -21,8 +21,7 @@
         }
     ],
     "require": {
-        "php": "~7.1",
-        "ext-json": "*"
+        "php": "~7.1"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^1.0",
@@ -33,7 +32,8 @@
     },
     "suggest": {
         "symfony/yaml": ">=2.0 <5.0",
-        "vlucas/phpdotenv": "~2.0"
+        "vlucas/phpdotenv": "~2.0",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
