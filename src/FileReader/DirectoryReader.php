@@ -67,7 +67,7 @@ class DirectoryReader implements FileReaderInterface
         $fileConfig = $reader->read($file);
         if ($this->prefixWithFile) {
             $noExtension = str_replace('.' . $file->getExtension(), '', $fileName);
-            if($noExtension) {
+            if ($noExtension) {
                 $configuration[$noExtension] = $fileConfig;
             } else {
                 $configuration = array_merge($configuration, $fileConfig);

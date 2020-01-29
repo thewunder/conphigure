@@ -275,7 +275,7 @@ class Conphigure implements \ArrayAccess
     private function getKeyParts(string $key): array
     {
         $keyParts = explode($this->delimiter, $key);
-        $keyParts = array_filter($keyParts, function(string $keyPart){
+        $keyParts = array_filter($keyParts, function (string $keyPart) {
             return !empty($keyPart);
         });
         return array_values($keyParts);
