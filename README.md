@@ -15,6 +15,7 @@ It can read configuration files in the following formats:
 - php
 - yaml
 - json
+- xml
 - ini
 - dotenv
 

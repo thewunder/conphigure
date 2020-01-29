@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0
+
+### New Features
+- Add ability to read XML files
+- Allow Symfony YAML 5.x
+- Tested in PHP 7.3 AND 7.4
+
+### Backward Compatibility Breaks
+- Drop support for PHP 7.0
+
 ## 1.1
 
 ### New Features
