@@ -31,7 +31,7 @@
         "vlucas/phpdotenv": "~2.0"
     },
     "suggest": {
-        "symfony/yaml": ">=2.0 <5.0",
+        "symfony/yaml": ">=2.0 <6.0",
         "vlucas/phpdotenv": "~2.0",
         "ext-json": "*",
         "ext-simplexml": "*"
