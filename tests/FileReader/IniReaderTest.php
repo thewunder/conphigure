@@ -1,6 +1,7 @@
 <?php
 namespace Conphigure\Test\FileReader;
 
+use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\IniReader;
 use Conphigure\Test\BaseTestCase;
 
@@ -15,11 +16,10 @@ class IniReaderTest extends BaseTestCase
         $this->assertEquals($config, $reader->read($this->getConfigDir() . 'inifile.ini'));
     }
 
-    /**
-     * @expectedException \Conphigure\Exception\ConfigurationFileException
-     */
     public function testInvalid()
     {
+        $this->expectException(ConfigurationFileException::class);
+
         $reader = new IniReader();
         $reader->read($this->getInvalidConfigDir() . 'inifile.ini');
     }

@@ -2,6 +2,7 @@
 
 namespace Conphigure\Test\FileReader;
 
+use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\JsonReader;
 use Conphigure\Test\BaseTestCase;
 
@@ -16,11 +17,10 @@ class JsonReaderTest extends BaseTestCase
         $this->assertEquals($config, $reader->read($this->getConfigDir() . 'jsonfile.json'));
     }
 
-    /**
-     * @expectedException \Conphigure\Exception\ConfigurationFileException
-     */
     public function testInvalid()
     {
+        $this->expectException(ConfigurationFileException::class);
+
         $reader = new JsonReader();
         $reader->read($this->getInvalidConfigDir() . 'jsonfile.json');
     }

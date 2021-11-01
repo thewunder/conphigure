@@ -4,6 +4,8 @@ namespace Conphigure\Test;
 
 use Conphigure\Conphigure;
 use Conphigure\Exception\ConfigurationFileException;
+use Conphigure\Exception\ConfigurationMissingException;
+use Conphigure\Exception\ConphigureException;
 use Conphigure\FileReader\DirectoryReader;
 use Conphigure\FileReader\EnvReader;
 use Conphigure\FileReader\JsonReader;
@@ -32,11 +34,10 @@ class ConphigureTest extends BaseTestCase
         $this->assertEquals(false, $config->get('nested/key1', false));
     }
 
-    /**
-     * @expectedException \Conphigure\Exception\ConfigurationMissingException
-     */
     public function testMissing()
     {
+        $this->expectException(ConfigurationMissingException::class);
+
         $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $config->get('nested/asdf');
@@ -60,12 +61,11 @@ class ConphigureTest extends BaseTestCase
         $this->assertEquals('new', $config->get('newnested/newkey'));
     }
 
-    /**
-     * @expectedException \Conphigure\Exception\ConphigureException
-     * @expectedExceptionMessageRegExp /^Refusing to overwrite existing non-array value at/
-     */
     public function testSetOverwriteException()
     {
+        $this->expectException(ConphigureException::class);
+        $this->expectExceptionMessageMatches('/^Refusing to overwrite existing non-array value at/');
+
         $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $config->set('simple/key1', 'new');
@@ -102,11 +102,10 @@ class ConphigureTest extends BaseTestCase
         $this->assertInstanceOf(DirectoryReader::class, $reader);
     }
 
-    /**
-     * @expectedException \Conphigure\Exception\ConfigurationFileException
-     */
     public function testGetMissingFileReader()
     {
+        $this->expectException(ConfigurationFileException::class);
+
         $config = new Conphigure([new PhpReader()]);
         $config->getFileReader('dir/file.toml');
     }
@@ -161,22 +160,21 @@ class ConphigureTest extends BaseTestCase
         $this->assertEquals($this->getSimpleTestData(), $config->get('prefix/sub'));
     }
 
-    /**
-     * @expectedException \Conphigure\Exception\ConfigurationFileException
-     * @expectedExceptionMessageRegExp  /^Error reading configuration file .+ does not exist$/
-     */
     public function testReadMissingFile()
     {
+        $this->expectException(ConfigurationFileException::class);
+        $this->expectExceptionMessageMatches('/^Error reading configuration file .+ does not exist$/');
+
         $config = Conphigure::create([new PhpReader()]);
         $config->read($this->getConfigDir() . 'missing.php');
     }
 
-    /**
-     * @expectedException \Conphigure\Exception\ConfigurationFileException
-     * @expectedExceptionMessageRegExp  /^Error reading configuration file .+ is not readable$/
-     */
     public function testReadUnreadable()
     {
+        $this->expectException(ConfigurationFileException::class);
+        $this->expectExceptionMessageMatches('/^Error reading configuration file .+ is not readable$/');
+
+
         if (file_exists('/root')) {
             $config = Conphigure::create([new PhpReader()]);
             $config->read('/root');

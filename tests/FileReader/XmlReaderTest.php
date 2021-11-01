@@ -2,6 +2,7 @@
 
 namespace Conphigure\Test\FileReader;
 
+use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\XmlReader;
 use Conphigure\Test\BaseTestCase;
 
@@ -27,11 +28,10 @@ class XmlReaderTest extends BaseTestCase
         $this->assertEquals(['attr'=>'attr', 'child1'=>'value1', 'child2'=>'value2'], $fileConfig['childrenWin']);
     }
 
-    /**
-     * @expectedException \Conphigure\Exception\ConfigurationFileException
-     */
     public function testInvalid()
     {
+        $this->expectException(ConfigurationFileException::class);
+
         $reader = new XmlReader();
         $reader->read($this->getInvalidConfigDir() . 'xmlfile.xml');
     }

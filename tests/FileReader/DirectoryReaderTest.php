@@ -3,6 +3,7 @@
 namespace Conphigure\Test\FileReader;
 
 use Conphigure\Conphigure;
+use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\PhpReader;
 use Conphigure\FileReader\DirectoryReader;
 use Conphigure\Test\BaseTestCase;
@@ -37,12 +38,10 @@ class DirectoryReaderTest extends BaseTestCase
         $this->assertEquals($testData, $configuration);
     }
 
-    /**
-     * @expectedException \Conphigure\Exception\ConfigurationFileException
-     * @expectedExceptionMessageRegExp  /^Error reading configuration file .+ must be a directory$/
-     */
     public function testReadNonDirectory()
     {
+        $this->expectException(ConfigurationFileException::class);
+        $this->expectExceptionMessageMatches('/^Error reading configuration file .+ must be a directory$/');
         $config = $this->getMockConfig();
         $dirSource = new DirectoryReader($config, false);
         $configuration = $dirSource->read($this->getConfigDir() . 'phpfile.php');
