@@ -4,20 +4,17 @@ namespace Conphigure\FileReader;
 
 use Conphigure\Conphigure;
 use Conphigure\Exception\ConfigurationFileException;
+use FilesystemIterator;
+use RecursiveDirectoryIterator;
+use SplFileInfo;
 
 /**
  * Reads recursively reads all configuration files in a directory and combines them into a single array
  */
 class DirectoryReader implements FileReaderInterface
 {
-    /**
-     * @var Conphigure
-     */
-    private $config;
-    /**
-     * @var bool
-     */
-    private $prefixWithFile;
+    private Conphigure $config;
+    private bool $prefixWithFile;
 
     /**
      * @param Conphigure $config
@@ -29,37 +26,39 @@ class DirectoryReader implements FileReaderInterface
         $this->prefixWithFile = $prefixWithFile;
     }
 
-    public function read(string $path): array
+    public function read(string $file): array
     {
-        if (!is_dir($path)) {
-            throw new ConfigurationFileException($path, 0, null, ' must be a directory');
+        if (!is_dir($file)) {
+            throw new ConfigurationFileException($file, 0, null, ' must be a directory');
         }
 
-        $directory = new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS);
+        $directory = new RecursiveDirectoryIterator($file, FilesystemIterator::SKIP_DOTS);
         $configuration = [];
         $this->traverseDirectory($directory, $configuration);
 
         return $configuration;
     }
 
-    protected function traverseDirectory(\RecursiveDirectoryIterator $directory, array &$configuration)
+    protected function traverseDirectory(RecursiveDirectoryIterator $directory, array &$configuration)
     {
-        /** @var \SplFileInfo $file */
+        /** @var SplFileInfo $file */
         foreach ($directory as $file) {
             if ($file->isFile()) {
                 $this->readFile($file, $configuration);
             } elseif ($directory->hasChildren()) {
+                /** @var RecursiveDirectoryIterator $iterator */
+                $iterator = $directory->getChildren();
                 if ($this->prefixWithFile) {
                     $configuration[$directory->getFilename()] = [];
-                    $this->traverseDirectory($directory->getChildren(), $configuration[$directory->getFilename()]);
+                    $this->traverseDirectory($iterator, $configuration[$directory->getFilename()]);
                 } else {
-                    $this->traverseDirectory($directory->getChildren(), $configuration);
+                    $this->traverseDirectory($iterator, $configuration);
                 }
             }
         }
     }
 
-    protected function readFile(\SplFileInfo $file, array &$configuration)
+    protected function readFile(SplFileInfo $file, array &$configuration)
     {
         $fileName = $file->getBasename();
 

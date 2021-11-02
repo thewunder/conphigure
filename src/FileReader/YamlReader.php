@@ -11,10 +11,7 @@ use Symfony\Component\Yaml\Parser;
  */
 class YamlReader implements FileReaderInterface
 {
-    /**
-     * @var Parser
-     */
-    private $parser;
+    private Parser $parser;
 
     public function __construct(Parser $parser)
     {

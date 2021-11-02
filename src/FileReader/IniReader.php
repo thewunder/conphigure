@@ -3,6 +3,7 @@
 namespace Conphigure\FileReader;
 
 use Conphigure\Exception\ConfigurationFileException;
+use Throwable;
 
 /**
  * Reads .ini files
@@ -13,7 +14,7 @@ class IniReader implements FileReaderInterface
     {
         try {
             return parse_ini_file($file, true, INI_SCANNER_TYPED);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             throw new ConfigurationFileException($file, $e->getCode(), $e, $e->getMessage());
         }
     }

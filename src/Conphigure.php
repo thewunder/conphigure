@@ -2,6 +2,7 @@
 
 namespace Conphigure;
 
+use ArrayAccess;
 use Conphigure\Exception\ConphigureException;
 use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\Exception\ConfigurationMissingException;
@@ -18,22 +19,13 @@ use Symfony\Component\Yaml\Parser;
 /**
  * Main entry point to the Conphigure library
  */
-class Conphigure implements \ArrayAccess
+class Conphigure implements ArrayAccess
 {
     const DEFAULT_DELIMITER = '/';
 
-    /**
-     * @var array
-     */
-    private $config = [];
-    /**
-     * @var string
-     */
-    private $delimiter;
-    /**
-     * @var array
-     */
-    private $fileReaders;
+    private array $config = [];
+    private string $delimiter;
+    private array $fileReaders;
 
 
     /**
@@ -254,7 +246,7 @@ class Conphigure implements \ArrayAccess
         if (isset($this->fileReaders[$key])) {
             return $this->fileReaders[$key];
         }
-        throw new ConfigurationFileException($path, 0, null, " no file reader for {$key} available");
+        throw new ConfigurationFileException($path, 0, null, " no file reader for $key available");
     }
 
     /**
@@ -288,7 +280,7 @@ class Conphigure implements \ArrayAccess
         return array_values($keyParts);
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return $this->has($offset);
     }
