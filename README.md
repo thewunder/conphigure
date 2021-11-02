@@ -126,13 +126,13 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/thewunder/conphigure/master.svg?style=flat-square
 [ico-coverage]: https://coveralls.io/repos/github/thewunder/conphigure/badge.svg?branch=master
-[ico-code-quality]: https://insight.sensiolabs.com/projects/2adc23b5-79f6-406f-863f-b90d279867ab/mini.png
+[ico-code-quality]: https://insight.symfony.com/projects/c720ff4d-d6e1-4506-9509-7ea14c3157dd/mini.svg
 [ico-downloads]: https://img.shields.io/packagist/dt/thewunder/conphigure.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/thewunder/conphigure
-[link-travis]: https://travis-ci.org/thewunder/conphigure
+[link-travis]: https://app.travis-ci.com/github/thewunder/conphigure
 [link-coverage]: https://coveralls.io/github/thewunder/conphigure?branch=master
-[link-code-quality]: https://insight.sensiolabs.com/projects/2adc23b5-79f6-406f-863f-b90d279867ab
+[link-code-quality]: https://insight.symfony.com/projects/c720ff4d-d6e1-4506-9509-7ea14c3157dd
 [link-downloads]: https://packagist.org/packages/thewunder/conphigure
 [link-author]: https://github.com/thewunder
 [link-contributors]: ../../contributors
