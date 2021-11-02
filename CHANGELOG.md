@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2
+
+### New Features
+- Add support for PHP 8.0
+- Upgrade PHPUnit
+
+### Backward Compatibility Breaks
+- Drop support for PHP 7.1-7.3
+
 ## 2.0
 
 ### New Features
