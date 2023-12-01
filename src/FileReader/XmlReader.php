@@ -20,6 +20,10 @@ class XmlReader implements FileReaderInterface
             foreach ($document as $element) {
                 $this->readRecursive($element, $config);
             }
+            $error = libxml_get_last_error();
+            if ($error) {
+                throw new ConfigurationFileException($file, $error->code, null, "$error->message on line $error->line");
+            }
             return $config;
         } catch (\Throwable $e) {
             throw new ConfigurationFileException($file, $e->getCode(), $e, $e->getMessage());
