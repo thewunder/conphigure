@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.0
+
+### New Features
+- Require PHP 8.1
+- Upgrade PHPUnit
+- Support Symfony 6.x
+- Support phpdotenv 4.x and 5.x
+
+### Backward Compatibility Breaks
+- Drop support for PHP 7.4 and 8.0
+- Drop support for Symfony < 5
+- Drop support for phpdotenv < 4.2
+- Most classes made final
+
 ## 2.2
 
 ### New Features
