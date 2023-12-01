@@ -8,7 +8,7 @@ use Conphigure\FileReader\PhpReader;
 use Conphigure\FileReader\DirectoryReader;
 use Conphigure\Test\BaseTestCase;
 
-class DirectoryReaderTest extends BaseTestCase
+final class DirectoryReaderTest extends BaseTestCase
 {
     public function testRead()
     {

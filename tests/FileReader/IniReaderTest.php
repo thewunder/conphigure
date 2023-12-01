@@ -5,7 +5,7 @@ use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\IniReader;
 use Conphigure\Test\BaseTestCase;
 
-class IniReaderTest extends BaseTestCase
+final class IniReaderTest extends BaseTestCase
 {
     public function testRead()
     {

@@ -12,7 +12,7 @@ use Conphigure\FileReader\JsonReader;
 use Conphigure\FileReader\PhpReader;
 use Conphigure\FileReader\YamlReader;
 
-class ConphigureTest extends BaseTestCase
+final class ConphigureTest extends BaseTestCase
 {
     public function testGet()
     {

@@ -5,7 +5,7 @@ use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\PhpReader;
 use Conphigure\Test\BaseTestCase;
 
-class PhpReaderTest extends BaseTestCase
+final class PhpReaderTest extends BaseTestCase
 {
     public function testRead()
     {

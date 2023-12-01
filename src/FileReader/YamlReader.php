@@ -9,13 +9,11 @@ use Symfony\Component\Yaml\Parser;
 /**
  * Reads YAML files using Symfony's YAML parser
  */
-class YamlReader implements FileReaderInterface
+final class YamlReader implements FileReaderInterface
 {
-    private Parser $parser;
 
-    public function __construct(Parser $parser)
+    public function __construct(private readonly Parser $parser)
     {
-        $this->parser = $parser;
     }
 
     public function getExtensions(): array

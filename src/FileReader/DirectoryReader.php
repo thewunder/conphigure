@@ -11,19 +11,14 @@ use SplFileInfo;
 /**
  * Reads recursively reads all configuration files in a directory and combines them into a single array
  */
-class DirectoryReader implements FileReaderInterface
+final class DirectoryReader implements FileReaderInterface
 {
-    private Conphigure $config;
-    private bool $prefixWithFile;
-
     /**
      * @param Conphigure $config
      * @param bool $prefixWithFile Set contents of each file with a prefix based on the file name
      */
-    public function __construct(Conphigure $config, bool $prefixWithFile = true)
+    public function __construct(private readonly Conphigure $config, private readonly bool $prefixWithFile = true)
     {
-        $this->config = $config;
-        $this->prefixWithFile = $prefixWithFile;
     }
 
     public function read(string $file): array

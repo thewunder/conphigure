@@ -4,7 +4,7 @@ namespace Conphigure\Test;
 
 use PHPUnit\Framework\TestCase;
 
-class BaseTestCase extends TestCase
+abstract class BaseTestCase extends TestCase
 {
     protected function getConfigDir(): string
     {

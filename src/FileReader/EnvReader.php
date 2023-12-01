@@ -8,7 +8,7 @@ use Dotenv\Dotenv;
 /**
  * Reads from .env files, unlike reading directly with the dotenv library, it will not set $_ENV or $_SERVER globals
  */
-class EnvReader implements FileReaderInterface
+final class EnvReader implements FileReaderInterface
 {
     public function getExtensions(): array
     {

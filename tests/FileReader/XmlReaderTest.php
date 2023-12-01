@@ -6,7 +6,7 @@ use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\XmlReader;
 use Conphigure\Test\BaseTestCase;
 
-class XmlReaderTest extends BaseTestCase
+final class XmlReaderTest extends BaseTestCase
 {
     public function testRead()
     {

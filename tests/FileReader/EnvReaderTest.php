@@ -6,7 +6,7 @@ use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\EnvReader;
 use Conphigure\Test\BaseTestCase;
 
-class EnvReaderTest extends BaseTestCase
+final class EnvReaderTest extends BaseTestCase
 {
     public function testRead()
     {

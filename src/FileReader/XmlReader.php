@@ -10,7 +10,7 @@ use Conphigure\Exception\ConfigurationFileException;
  * The root element is omitted. Multiple elements with the same name overwrite the previous value.
  * For elements with text values and children or attributes, the text value will be ignored.
  */
-class XmlReader implements FileReaderInterface
+final class XmlReader implements FileReaderInterface
 {
     public function read(string $file): array
     {
@@ -30,7 +30,7 @@ class XmlReader implements FileReaderInterface
         }
     }
 
-    private function readRecursive(\SimpleXMLElement $element, array &$config)
+    private function readRecursive(\SimpleXMLElement $element, array &$config): void
     {
         if (!$element->count() && !$element->attributes()) {
             $config[$element->getName()] = (string) $element;

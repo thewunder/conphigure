@@ -6,7 +6,7 @@ use Conphigure\Exception\ConfigurationFileException;
 use Conphigure\FileReader\JsonReader;
 use Conphigure\Test\BaseTestCase;
 
-class JsonReaderTest extends BaseTestCase
+final class JsonReaderTest extends BaseTestCase
 {
     public function testRead()
     {

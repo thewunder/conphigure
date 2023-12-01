@@ -7,7 +7,7 @@ use Conphigure\FileReader\YamlReader;
 use Conphigure\Test\BaseTestCase;
 use Symfony\Component\Yaml\Parser;
 
-class YamlReaderTest extends BaseTestCase
+final class YamlReaderTest extends BaseTestCase
 {
     public function testRead()
     {

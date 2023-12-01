@@ -84,10 +84,10 @@ class Conphigure implements ArrayAccess
      * Retrieves a value from config, a ConfigurationMissingException is thrown if the value is not found and no default is provided
      *
      * @param string $key Key delimited by the separator (ex. system/db/host)
-     * @param mixed $default If a non-null value is passed the default will be returned instead of an exception being thrown
+     * @param mixed|null $default If a non-null value is passed the default will be returned instead of an exception being thrown
      * @return mixed
      */
-    public function get(string $key, $default = null)
+    public function get(string $key, mixed $default = null): mixed
     {
         $keyParts = $this->getKeyParts($key);
         $lastIndex = count($keyParts) - 1;
@@ -136,13 +136,13 @@ class Conphigure implements ArrayAccess
      * @param string $key Key delimited by the separator (ex. system/db/host)
      * @param mixed $value
      */
-    public function set(string $key, $value)
+    public function set(string $key, mixed $value): void
     {
         $keyParts = $this->getKeyParts($key);
         $this->recursiveSet($keyParts, $this->config, $value);
     }
 
-    private function recursiveSet(array $keyParts, array &$config, $value)
+    private function recursiveSet(array $keyParts, array &$config, $value): void
     {
         $keyPart = array_shift($keyParts);
         if (empty($keyParts)) {
@@ -162,13 +162,13 @@ class Conphigure implements ArrayAccess
      *
      * @param string $key Key delimited by the separator (ex. system/db/host)
      */
-    public function remove(string $key)
+    public function remove(string $key): void
     {
         $keyParts = $this->getKeyParts($key);
         $this->recursiveRemove($keyParts, $this->config);
     }
 
-    private function recursiveRemove(array $keyParts, array &$config)
+    private function recursiveRemove(array $keyParts, array &$config): void
     {
         $keyPart = array_shift($keyParts);
         if (empty($keyParts)) {
@@ -216,7 +216,7 @@ class Conphigure implements ArrayAccess
      *
      * @param array $config
      */
-    public function addConfiguration(array $config)
+    public function addConfiguration(array $config): void
     {
         $this->config = array_merge($this->config, $config);
     }
@@ -224,7 +224,7 @@ class Conphigure implements ArrayAccess
     /**
      * @param FileReaderInterface $fileReader
      */
-    public function addFileReader(FileReaderInterface $fileReader)
+    public function addFileReader(FileReaderInterface $fileReader): void
     {
         foreach ($fileReader->getExtensions() as $extension) {
             $this->fileReaders[$extension] = $fileReader;
@@ -254,7 +254,7 @@ class Conphigure implements ArrayAccess
      *
      * @param string $file
      */
-    protected function validatePath(string $file)
+    protected function validatePath(string $file): void
     {
         if (!file_exists($file)) {
             throw new ConfigurationFileException($file, 0, null, ' does not exist');
@@ -280,22 +280,22 @@ class Conphigure implements ArrayAccess
         return array_values($keyParts);
     }
 
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return $this->has($offset);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->get($offset);
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->set($offset, $value);
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         $this->remove($offset);
     }
