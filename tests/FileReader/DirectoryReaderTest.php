@@ -54,11 +54,11 @@ class DirectoryReaderTest extends BaseTestCase
     {
         $config = $this->getMockBuilder(Conphigure::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getFileReader'])
+            ->onlyMethods(['getFileReader'])
             ->getMock();
 
         $reader = $this->getMockBuilder(PhpReader::class)
-            ->setMethods(['read'])
+            ->onlyMethods(['read'])
             ->getMock();
         $reader->method('read')->willReturn($this->getSimpleTestData());
         $config->method('getFileReader')->willReturn($reader);
