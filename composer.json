@@ -28,11 +28,11 @@
         "phpunit/phpunit": "^10.0",
         "squizlabs/php_codesniffer": "^2.3",
         "symfony/yaml": "^5.0 || ^6.0",
-        "vlucas/phpdotenv": "~2.0"
+        "vlucas/phpdotenv": "^4.2 || ^5.0"
     },
     "suggest": {
         "symfony/yaml": "^5.0 || ^6.0",
-        "vlucas/phpdotenv": "~2.0",
+        "vlucas/phpdotenv": "^4.2 || ^5.0",
         "ext-json": "*",
         "ext-simplexml": "*"
     },

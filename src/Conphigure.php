@@ -74,7 +74,7 @@ class Conphigure implements ArrayAccess
         if (class_exists('Symfony\\Component\\Yaml\\Parser')) {
             $readers[] = new YamlReader(new Parser());
         }
-        if (class_exists('Dotenv\\Loader')) {
+        if (class_exists('Dotenv\\Dotenv')) {
             $readers[] = new EnvReader();
         }
         return $readers;
