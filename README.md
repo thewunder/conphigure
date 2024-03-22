@@ -2,9 +2,6 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-coverage]][link-coverage]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Conphigure is a framework agnostic library for reading and retrieving configuration.
@@ -124,15 +121,10 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [ico-version]: https://img.shields.io/packagist/v/thewunder/conphigure.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/thewunder/conphigure/master.svg?style=flat-square
-[ico-coverage]: https://coveralls.io/repos/github/thewunder/conphigure/badge.svg?branch=master
-[ico-code-quality]: https://insight.symfony.com/projects/c720ff4d-d6e1-4506-9509-7ea14c3157dd/mini.svg
 [ico-downloads]: https://img.shields.io/packagist/dt/thewunder/conphigure.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/thewunder/conphigure
-[link-travis]: https://app.travis-ci.com/github/thewunder/conphigure
 [link-coverage]: https://coveralls.io/github/thewunder/conphigure?branch=master
-[link-code-quality]: https://insight.symfony.com/projects/c720ff4d-d6e1-4506-9509-7ea14c3157dd
 [link-downloads]: https://packagist.org/packages/thewunder/conphigure
 [link-author]: https://github.com/thewunder
 [link-contributors]: ../../contributors
