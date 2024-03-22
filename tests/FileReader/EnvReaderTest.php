@@ -8,7 +8,7 @@ use Conphigure\Test\BaseTestCase;
 
 final class EnvReaderTest extends BaseTestCase
 {
-    public function testRead()
+    public function testRead(): void
     {
         $reader = new EnvReader();
 
@@ -17,7 +17,7 @@ final class EnvReaderTest extends BaseTestCase
         $this->assertEquals($config, $reader->read($this->getConfigDir() . '.env'));
     }
 
-    public function testInvalid()
+    public function testInvalid(): void
     {
         $this->expectException(ConfigurationFileException::class);
 

@@ -8,7 +8,7 @@ use Conphigure\Test\BaseTestCase;
 
 final class XmlReaderTest extends BaseTestCase
 {
-    public function testRead()
+    public function testRead(): void
     {
         $reader = new XmlReader();
 
@@ -17,7 +17,7 @@ final class XmlReaderTest extends BaseTestCase
         $this->assertEquals($this->getSimpleTestData(), $fileConfig);
     }
 
-    public function testOther()
+    public function testOther(): void
     {
         $reader = new XmlReader();
 
@@ -28,7 +28,7 @@ final class XmlReaderTest extends BaseTestCase
         $this->assertEquals(['attr'=>'attr', 'child1'=>'value1', 'child2'=>'value2'], $fileConfig['childrenWin']);
     }
 
-    public function testInvalid()
+    public function testInvalid(): void
     {
         $this->expectException(ConfigurationFileException::class);
 

@@ -10,7 +10,7 @@ use Conphigure\Test\BaseTestCase;
 
 final class DirectoryReaderTest extends BaseTestCase
 {
-    public function testRead()
+    public function testRead(): void
     {
         $config = $this->getMockConfig();
         $dirSource = new DirectoryReader($config);
@@ -28,7 +28,7 @@ final class DirectoryReaderTest extends BaseTestCase
         $this->assertEquals($testData, $configuration['subdir']['subsubdir']['phpfile']);
     }
 
-    public function testReadNoPrefix()
+    public function testReadNoPrefix(): void
     {
         $config = $this->getMockConfig();
         $dirSource = new DirectoryReader($config, false);
@@ -38,7 +38,7 @@ final class DirectoryReaderTest extends BaseTestCase
         $this->assertEquals($testData, $configuration);
     }
 
-    public function testReadNonDirectory()
+    public function testReadNonDirectory(): void
     {
         $this->expectException(ConfigurationFileException::class);
         $this->expectExceptionMessageMatches('/^Error reading configuration file .+ must be a directory$/');

@@ -7,7 +7,7 @@ use Conphigure\Test\BaseTestCase;
 
 final class PhpReaderTest extends BaseTestCase
 {
-    public function testRead()
+    public function testRead(): void
     {
         $reader = new PhpReader();
 
@@ -16,7 +16,7 @@ final class PhpReaderTest extends BaseTestCase
         $this->assertEquals($config, $reader->read($this->getConfigDir() . 'phpfile.php'));
     }
 
-    public function testInvalid()
+    public function testInvalid(): void
     {
         $this->expectException(ConfigurationFileException::class);
 

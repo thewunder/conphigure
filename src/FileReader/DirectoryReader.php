@@ -14,7 +14,6 @@ use SplFileInfo;
 final class DirectoryReader implements FileReaderInterface
 {
     /**
-     * @param Conphigure $config
      * @param bool $prefixWithFile Set contents of each file with a prefix based on the file name
      */
     public function __construct(private readonly Conphigure $config, private readonly bool $prefixWithFile = true)
@@ -34,7 +33,7 @@ final class DirectoryReader implements FileReaderInterface
         return $configuration;
     }
 
-    protected function traverseDirectory(RecursiveDirectoryIterator $directory, array &$configuration)
+    protected function traverseDirectory(RecursiveDirectoryIterator $directory, array &$configuration): void
     {
         /** @var SplFileInfo $file */
         foreach ($directory as $file) {
@@ -53,7 +52,7 @@ final class DirectoryReader implements FileReaderInterface
         }
     }
 
-    protected function readFile(SplFileInfo $file, array &$configuration)
+    protected function readFile(SplFileInfo $file, array &$configuration): void
     {
         $fileName = $file->getBasename();
 

@@ -9,7 +9,7 @@ use Symfony\Component\Yaml\Parser;
 
 final class YamlReaderTest extends BaseTestCase
 {
-    public function testRead()
+    public function testRead(): void
     {
         $reader = new YamlReader(new Parser());
 
@@ -18,7 +18,7 @@ final class YamlReaderTest extends BaseTestCase
         $this->assertEquals($config, $reader->read($this->getConfigDir() . 'yamlfile.yml'));
     }
 
-    public function testInvalid()
+    public function testInvalid(): void
     {
         $this->expectException(ConfigurationFileException::class);
 

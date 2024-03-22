@@ -14,27 +14,27 @@ use Conphigure\FileReader\YamlReader;
 
 final class ConphigureTest extends BaseTestCase
 {
-    public function testGet()
+    public function testGet(): void
     {
         $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertEquals('value1', $config->get('nested/key1'));
     }
 
-    public function testExtraSeparators()
+    public function testExtraSeparators(): void
     {
         $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
         $this->assertEquals('value1', $config->get('/nested//key1/'));
     }
 
-    public function testGetWithDefault()
+    public function testGetWithDefault(): void
     {
         $config = new Conphigure([]);
         $this->assertEquals(false, $config->get('nested/key1', false));
     }
 
-    public function testMissing()
+    public function testMissing(): void
     {
         $this->expectException(ConfigurationMissingException::class);
 
@@ -43,7 +43,7 @@ final class ConphigureTest extends BaseTestCase
         $config->get('nested/asdf');
     }
 
-    public function testHas()
+    public function testHas(): void
     {
         $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
@@ -51,7 +51,7 @@ final class ConphigureTest extends BaseTestCase
         $this->assertFalse($config->has('nested/missing'));
     }
 
-    public function testSet()
+    public function testSet(): void
     {
         $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
@@ -61,7 +61,7 @@ final class ConphigureTest extends BaseTestCase
         $this->assertEquals('new', $config->get('newnested/newkey'));
     }
 
-    public function testSetOverwriteException()
+    public function testSetOverwriteException(): void
     {
         $this->expectException(ConphigureException::class);
         $this->expectExceptionMessageMatches('/^Refusing to overwrite existing non-array value at/');
@@ -71,7 +71,7 @@ final class ConphigureTest extends BaseTestCase
         $config->set('simple/key1', 'new');
     }
 
-    public function testRemove()
+    public function testRemove(): void
     {
         $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
@@ -79,7 +79,7 @@ final class ConphigureTest extends BaseTestCase
         $this->assertFalse($config->has('nested/key1'));
     }
 
-    public function testOverwrite()
+    public function testOverwrite(): void
     {
         $config = new Conphigure([]);
         $config->addConfiguration($this->getSimpleTestData());
@@ -87,14 +87,14 @@ final class ConphigureTest extends BaseTestCase
         $this->assertEquals('new', $config->get('nested/key1'));
     }
 
-    public function testGetFileReader()
+    public function testGetFileReader(): void
     {
         $config = new Conphigure([new PhpReader()]);
         $reader = $config->getFileReader('dir/file.php');
         $this->assertInstanceOf(PhpReader::class, $reader);
     }
 
-    public function testGetDirectoryReader()
+    public function testGetDirectoryReader(): void
     {
         $config = new Conphigure([new PhpReader()]);
         $config->addFileReader(new DirectoryReader($config));
@@ -102,7 +102,7 @@ final class ConphigureTest extends BaseTestCase
         $this->assertInstanceOf(DirectoryReader::class, $reader);
     }
 
-    public function testGetMissingFileReader()
+    public function testGetMissingFileReader(): void
     {
         $this->expectException(ConfigurationFileException::class);
 
@@ -110,7 +110,7 @@ final class ConphigureTest extends BaseTestCase
         $config->getFileReader('dir/file.toml');
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $config = Conphigure::create();
         $this->assertInstanceOf(Conphigure::class, $config);
@@ -128,7 +128,7 @@ final class ConphigureTest extends BaseTestCase
         $this->assertInstanceOf(DirectoryReader::class, $reader);
     }
 
-    public function testCreateWithReaders()
+    public function testCreateWithReaders(): void
     {
         $config = Conphigure::create([new PhpReader()]);
         $this->assertInstanceOf(Conphigure::class, $config);
@@ -140,12 +140,12 @@ final class ConphigureTest extends BaseTestCase
         try {
             $config->getFileReader('dir/file.yaml');
             $this->fail('Expected ConfigurationFileException');
-        } catch (ConfigurationFileException $e) {
+        } catch (ConfigurationFileException) {
             $this->addToAssertionCount(1);
         }
     }
 
-    public function testReadFile()
+    public function testReadFile(): void
     {
         $config = Conphigure::create([new PhpReader()]);
         $return = $config->read($this->getConfigDir() . 'phpfile.php');
@@ -153,14 +153,14 @@ final class ConphigureTest extends BaseTestCase
         $this->assertEquals($this->getSimpleTestData(), $return);
     }
 
-    public function testReadFileWithPrefix()
+    public function testReadFileWithPrefix(): void
     {
         $config = Conphigure::create([new PhpReader()]);
         $config->read($this->getConfigDir() . 'phpfile.php', 'prefix/sub');
         $this->assertEquals($this->getSimpleTestData(), $config->get('prefix/sub'));
     }
 
-    public function testReadMissingFile()
+    public function testReadMissingFile(): void
     {
         $this->expectException(ConfigurationFileException::class);
         $this->expectExceptionMessageMatches('/^Error reading configuration file .+ does not exist$/');
@@ -169,7 +169,7 @@ final class ConphigureTest extends BaseTestCase
         $config->read($this->getConfigDir() . 'missing.php');
     }
 
-    public function testReadUnreadable()
+    public function testReadUnreadable(): void
     {
         $this->expectException(ConfigurationFileException::class);
         $this->expectExceptionMessageMatches('/^Error reading configuration file .+ is not readable$/');
@@ -183,7 +183,7 @@ final class ConphigureTest extends BaseTestCase
         }
     }
 
-    public function testReadDirectory()
+    public function testReadDirectory(): void
     {
         $config = Conphigure::create();
         $config->read($this->getConfigDir());
@@ -197,14 +197,14 @@ final class ConphigureTest extends BaseTestCase
         $this->assertEquals($testData, $config->get('subdir/subsubdir/phpfile'));
     }
 
-    public function testReadDirectoryNoPrefix()
+    public function testReadDirectoryNoPrefix(): void
     {
         $config = Conphigure::create([], '/', false);
         $config->read($this->getConfigDir());
         $this->assertEquals($this->getSimpleTestData(), $config->all());
     }
 
-    public function testArrayAccessGet()
+    public function testArrayAccessGet(): void
     {
         $config = Conphigure::create([new PhpReader()]);
 
@@ -212,7 +212,7 @@ final class ConphigureTest extends BaseTestCase
         $this->assertEquals('value1', $config['nested/key1']);
     }
 
-    public function testArrayAccessIsset()
+    public function testArrayAccessIsset(): void
     {
         $config = Conphigure::create([new PhpReader()]);
 
@@ -221,7 +221,7 @@ final class ConphigureTest extends BaseTestCase
         $this->assertFalse(isset($config['nested/missing']));
     }
 
-    public function testArrayAccessSet()
+    public function testArrayAccessSet(): void
     {
         $config = Conphigure::create([new PhpReader()]);
 
@@ -229,7 +229,7 @@ final class ConphigureTest extends BaseTestCase
         $this->assertEquals('value1', $config->get('nested/key1'));
     }
 
-    public function testArrayAccessUnset()
+    public function testArrayAccessUnset(): void
     {
         $config = Conphigure::create([new PhpReader()]);
         $config->addConfiguration($this->getSimpleTestData());

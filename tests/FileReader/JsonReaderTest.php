@@ -8,7 +8,7 @@ use Conphigure\Test\BaseTestCase;
 
 final class JsonReaderTest extends BaseTestCase
 {
-    public function testRead()
+    public function testRead(): void
     {
         $reader = new JsonReader();
 
@@ -17,7 +17,7 @@ final class JsonReaderTest extends BaseTestCase
         $this->assertEquals($config, $reader->read($this->getConfigDir() . 'jsonfile.json'));
     }
 
-    public function testInvalid()
+    public function testInvalid(): void
     {
         $this->expectException(ConfigurationFileException::class);
 

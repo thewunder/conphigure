@@ -7,7 +7,7 @@ use Conphigure\Test\BaseTestCase;
 
 final class IniReaderTest extends BaseTestCase
 {
-    public function testRead()
+    public function testRead(): void
     {
         $reader = new IniReader();
 
@@ -16,7 +16,7 @@ final class IniReaderTest extends BaseTestCase
         $this->assertEquals($config, $reader->read($this->getConfigDir() . 'inifile.ini'));
     }
 
-    public function testInvalid()
+    public function testInvalid(): void
     {
         $this->expectException(ConfigurationFileException::class);
 

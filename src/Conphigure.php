@@ -14,6 +14,7 @@ use Conphigure\FileReader\PhpReader;
 use Conphigure\FileReader\XmlReader;
 use Conphigure\FileReader\YamlReader;
 use Conphigure\FileReader\DirectoryReader;
+use Dotenv\Dotenv;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -21,10 +22,9 @@ use Symfony\Component\Yaml\Parser;
  */
 class Conphigure implements ArrayAccess
 {
-    const DEFAULT_DELIMITER = '/';
+    public const DEFAULT_DELIMITER = '/';
 
     private array $config = [];
-    private string $delimiter;
     private array $fileReaders;
 
 
@@ -32,12 +32,11 @@ class Conphigure implements ArrayAccess
      * @param FileReaderInterface[] $fileReaders
      * @param string $delimiter Character used to separate nested levels of configuration
      */
-    public function __construct(array $fileReaders, string $delimiter = self::DEFAULT_DELIMITER)
+    public function __construct(array $fileReaders, private readonly string $delimiter = self::DEFAULT_DELIMITER)
     {
         foreach ($fileReaders as $fileReader) {
             $this->addFileReader($fileReader);
         }
-        $this->delimiter = $delimiter;
     }
 
     /**
@@ -71,10 +70,10 @@ class Conphigure implements ArrayAccess
         if (extension_loaded('SimpleXML')) {
             $readers[] = new XmlReader();
         }
-        if (class_exists('Symfony\\Component\\Yaml\\Parser')) {
+        if (class_exists(Parser::class)) {
             $readers[] = new YamlReader(new Parser());
         }
-        if (class_exists('Dotenv\\Dotenv')) {
+        if (class_exists(Dotenv::class)) {
             $readers[] = new EnvReader();
         }
         return $readers;
@@ -134,7 +133,6 @@ class Conphigure implements ArrayAccess
      * Sets a configuration value
      *
      * @param string $key Key delimited by the separator (ex. system/db/host)
-     * @param mixed $value
      */
     public function set(string $key, mixed $value): void
     {
@@ -213,17 +211,12 @@ class Conphigure implements ArrayAccess
 
     /**
      * Adds configuration, configuration added later overrides values provided from previous sources
-     *
-     * @param array $config
      */
     public function addConfiguration(array $config): void
     {
         $this->config = array_merge($this->config, $config);
     }
 
-    /**
-     * @param FileReaderInterface $fileReader
-     */
     public function addFileReader(FileReaderInterface $fileReader): void
     {
         foreach ($fileReader->getExtensions() as $extension) {
@@ -251,8 +244,6 @@ class Conphigure implements ArrayAccess
 
     /**
      * Validates that the path exists and is readable
-     *
-     * @param string $file
      */
     protected function validatePath(string $file): void
     {
@@ -268,15 +259,12 @@ class Conphigure implements ArrayAccess
     /**
      * Splits a key up into an array of key parts
      *
-     * @param string $key
      * @return array
      */
     private function getKeyParts(string $key): array
     {
         $keyParts = explode($this->delimiter, $key);
-        $keyParts = array_filter($keyParts, function (string $keyPart) {
-            return !empty($keyPart);
-        });
+        $keyParts = array_filter($keyParts, fn(string $keyPart) => !empty($keyPart));
         return array_values($keyParts);
     }
 
