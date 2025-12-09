@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1
+
+### New Features
+- Support Symfony 8.x
+- Run Tests on PHP 8.5
+
 ## 3.0
 
 ### New Features
